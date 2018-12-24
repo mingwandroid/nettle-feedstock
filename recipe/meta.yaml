@@ -12,9 +12,11 @@ source:
   sha256: {{ sha256 }}
   patches:
     - dlopen_test.patch  # [osx]
+    - 0002-Remove-all-asserts.patch
+    - 0003-Reinstate-all-asserts.patch
 
 build:
-  number: 1001
+  number: 1002
   skip: True  # [win]
   run_exports:
     # https://abi-laboratory.pro/?view=timeline&l=nettle

@@ -1,0 +1,2881 @@
+diff -urN nettle-3.4.1/aesdata.c nettle-3.4.1.orig/aesdata.c
+--- nettle-3.4.1/aesdata.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/aesdata.c	2018-12-24 14:43:35.852915211 +0000
+@@ -27,13 +27,13 @@
+ static unsigned
+ xtime(unsigned x)
+ {
+-//  assert (x < 0x100);
++  assert (x < 0x100);
+ 
+   x <<= 1;
+   if (x & 0x100)
+     x ^= 0x11b;
+ 
+-//  assert (x < 0x100);
++  assert (x < 0x100);
+ 
+   return x;
+ }
+diff -urN nettle-3.4.1/aes-decrypt.c nettle-3.4.1.orig/aes-decrypt.c
+--- nettle-3.4.1/aes-decrypt.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/aes-decrypt.c	2018-12-24 14:43:35.852915211 +0000
+@@ -349,7 +349,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_decrypt(ctx->rounds, ctx->keys, &_aes_decrypt_table,
+ 	       length, dst, src);
+ }
+@@ -359,7 +359,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_decrypt(_AES128_ROUNDS, ctx->keys, &_aes_decrypt_table,
+ 	       length, dst, src);
+ }
+@@ -369,7 +369,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_decrypt(_AES192_ROUNDS, ctx->keys, &_aes_decrypt_table,
+ 	       length, dst, src);
+ }
+@@ -379,7 +379,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_decrypt(_AES256_ROUNDS, ctx->keys, &_aes_decrypt_table,
+ 	       length, dst, src);
+ }
+diff -urN nettle-3.4.1/aes-encrypt.c nettle-3.4.1.orig/aes-encrypt.c
+--- nettle-3.4.1/aes-encrypt.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/aes-encrypt.c	2018-12-24 14:43:35.856916047 +0000
+@@ -47,7 +47,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_encrypt(ctx->rounds, ctx->keys, &_aes_encrypt_table,
+ 	       length, dst, src);
+ }
+@@ -57,7 +57,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_encrypt(_AES128_ROUNDS, ctx->keys, &_aes_encrypt_table,
+ 	       length, dst, src);
+ }
+@@ -67,7 +67,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_encrypt(_AES192_ROUNDS, ctx->keys, &_aes_encrypt_table,
+ 	       length, dst, src);
+ }
+@@ -77,7 +77,7 @@
+ 	       size_t length, uint8_t *dst,
+ 	       const uint8_t *src)
+ {
+-//  assert(!(length % AES_BLOCK_SIZE) );
++  assert(!(length % AES_BLOCK_SIZE) );
+   _aes_encrypt(_AES256_ROUNDS, ctx->keys, &_aes_encrypt_table,
+ 	       length, dst, src);
+ }
+diff -urN nettle-3.4.1/aes-set-encrypt-key.c nettle-3.4.1.orig/aes-set-encrypt-key.c
+--- nettle-3.4.1/aes-set-encrypt-key.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/aes-set-encrypt-key.c	2018-12-24 14:43:35.856916047 +0000
+@@ -47,8 +47,8 @@
+ {
+   unsigned nk, nr;
+ 
+-//  assert(keysize >= AES_MIN_KEY_SIZE);
+-//  assert(keysize <= AES_MAX_KEY_SIZE);
++  assert(keysize >= AES_MIN_KEY_SIZE);
++  assert(keysize <= AES_MAX_KEY_SIZE);
+   
+   /* Truncate keysizes to the valid key sizes provided by Rijndael */
+   if (keysize == AES256_KEY_SIZE) {
+diff -urN nettle-3.4.1/aes-set-key-internal.c nettle-3.4.1.orig/aes-set-key-internal.c
+--- nettle-3.4.1/aes-set-key-internal.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/aes-set-key-internal.c	2018-12-24 14:43:35.852915211 +0000
+@@ -53,7 +53,7 @@
+   unsigned lastkey, i;
+   uint32_t t;
+ 
+-//  assert(nk != 0);
++  assert(nk != 0);
+   lastkey = (AES_BLOCK_SIZE/4) * (nr + 1);
+   
+   for (i=0, rp = rcon; i<nk; i++)
+diff -urN nettle-3.4.1/arcfour.c nettle-3.4.1.orig/arcfour.c
+--- nettle-3.4.1/arcfour.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/arcfour.c	2018-12-24 14:43:35.848914374 +0000
+@@ -47,8 +47,8 @@
+ {
+   unsigned i, j, k;
+   
+-//  assert(length >= ARCFOUR_MIN_KEY_SIZE);
+-//  assert(length <= ARCFOUR_MAX_KEY_SIZE);
++  assert(length >= ARCFOUR_MIN_KEY_SIZE);
++  assert(length <= ARCFOUR_MAX_KEY_SIZE);
+ 
+   /* Initialize context */
+   for (i = 0; i<256; i++)
+diff -urN nettle-3.4.1/arctwo.c nettle-3.4.1.orig/arctwo.c
+--- nettle-3.4.1/arctwo.c	2018-12-24 14:44:09.314593380 +0000
++++ nettle-3.4.1.orig/arctwo.c	2018-12-24 14:43:35.836911865 +0000
+@@ -191,9 +191,9 @@
+   uint8_t S[128];
+   uint8_t x;
+ 
+-//  assert (length >= ARCTWO_MIN_KEY_SIZE);
+-//  assert (length <= ARCTWO_MAX_KEY_SIZE);
+-//  assert (ekb <= 1024);
++  assert (length >= ARCTWO_MIN_KEY_SIZE);
++  assert (length <= ARCTWO_MAX_KEY_SIZE);
++  assert (ekb <= 1024);
+ 
+   for (i = 0; i < length; i++)
+     S[i] = key[i];
+diff -urN nettle-3.4.1/base16-decode.c nettle-3.4.1.orig/base16-decode.c
+--- nettle-3.4.1/base16-decode.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/base16-decode.c	2018-12-24 14:43:35.848914374 +0000
+@@ -83,8 +83,8 @@
+     case -2:
+       return 0;
+     default:
+-//      assert(digit >= 0);
+-//      assert(digit < 0x10);
++      assert(digit >= 0);
++      assert(digit < 0x10);
+ 
+       if (ctx->bits)
+ 	{
+@@ -125,7 +125,7 @@
+ 	abort();
+       }
+   
+-//  assert(done <= BASE16_DECODE_LENGTH(src_length));
++  assert(done <= BASE16_DECODE_LENGTH(src_length));
+ 
+   *dst_length = done;
+   return 1;
+diff -urN nettle-3.4.1/base64-decode.c nettle-3.4.1.orig/base64-decode.c
+--- nettle-3.4.1/base64-decode.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/base64-decode.c	2018-12-24 14:43:35.856916047 +0000
+@@ -80,7 +80,7 @@
+   switch(data)
+     {
+     default:
+-//      assert(data >= 0 && data < 0x40);
++      assert(data >= 0 && data < 0x40);
+ 
+       if (ctx->padding)
+ 	return -1;
+@@ -141,7 +141,7 @@
+ 	abort();
+       }
+   
+-//  assert(done <= BASE64_DECODE_LENGTH(src_length));
++  assert(done <= BASE64_DECODE_LENGTH(src_length));
+ 
+   *dst_length = done;
+   return 1;
+diff -urN nettle-3.4.1/base64-encode.c nettle-3.4.1.orig/base64-encode.c
+--- nettle-3.4.1/base64-encode.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/base64-encode.c	2018-12-24 14:43:35.840912702 +0000
+@@ -79,8 +79,8 @@
+       *--out = ENCODE(alphabet, ((in[0] << 4) | (in[1] >> 4)));
+       *--out = ENCODE(alphabet, (in[0] >> 2));
+     }
+-//  assert(in == src);
+-//  assert(out == dst);
++  assert(in == src);
++  assert(out == dst);
+ }
+ 
+ static const char base64_encode_table[64] =
+@@ -129,7 +129,7 @@
+   ctx->bits = bits;
+   ctx->word = word;
+ 
+-//  assert(done <= 2);
++  assert(done <= 2);
+   
+   return done;
+ }
+@@ -158,7 +158,7 @@
+   
+   if (bulk)
+     {
+-//      assert(!(bulk % 3));
++      assert(!(bulk % 3));
+       
+       encode_raw(ctx->alphabet, dst + done, bulk, src);
+       done += BASE64_ENCODE_RAW_LENGTH(bulk);
+@@ -172,7 +172,7 @@
+       done += base64_encode_single(ctx, dst + done, *src++);
+     }
+ 
+-//  assert(done <= BASE64_ENCODE_LENGTH(length));
++  assert(done <= BASE64_ENCODE_LENGTH(length));
+ 
+   return done;
+ }
+@@ -195,6 +195,6 @@
+       ctx->bits = 0;
+     }
+ 
+-//  assert(done <= BASE64_ENCODE_FINAL_LENGTH);
++  assert(done <= BASE64_ENCODE_FINAL_LENGTH);
+   return done;
+ }
+diff -urN nettle-3.4.1/bignum.c nettle-3.4.1.orig/bignum.c
+--- nettle-3.4.1/bignum.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/bignum.c	2018-12-24 14:43:35.848914374 +0000
+@@ -111,13 +111,13 @@
+   if (!length)
+     {
+       /* x must be zero */
+-//      assert(!mpz_sgn(x));
++      assert(!mpz_sgn(x));
+       return;
+     }
+ 
+   if (mpz_sgn(x) >= 0)
+     {
+-//      assert(nettle_mpz_sizeinbase_256_u(x) <= length);
++      assert(nettle_mpz_sizeinbase_256_u(x) <= length);
+       nettle_mpz_to_octets(length, s, x, 0);
+     }
+   else
+@@ -126,7 +126,7 @@
+       mpz_init(c);
+       mpz_com(c, x);
+ 
+-//      assert(nettle_mpz_sizeinbase_256_u(c) <= length);
++      assert(nettle_mpz_sizeinbase_256_u(c) <= length);
+       nettle_mpz_to_octets(length, s, c, 0xff);
+ 
+       mpz_clear(c);
+diff -urN nettle-3.4.1/bignum-random-prime.c nettle-3.4.1.orig/bignum-random-prime.c
+--- nettle-3.4.1/bignum-random-prime.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/bignum-random-prime.c	2018-12-24 14:43:35.852915211 +0000
+@@ -198,7 +198,7 @@
+   mpz_init(y);
+ 
+   k = mpz_scan1(nm1, 0);
+-//  assert(k > 0);
++  assert(k > 0);
+ 
+   mpz_fdiv_q_2exp (r, nm1, k);
+ 
+@@ -341,8 +341,8 @@
+ 
+   p0_bits = mpz_sizeinbase (p0, 2);
+ 
+-//  assert (bits <= 3*p0_bits);
+-//  assert (bits > p0_bits);
++  assert (bits <= 3*p0_bits);
++  assert (bits > p0_bits);
+ 
+   need_square_test = (bits > 2 * p0_bits);
+ 
+@@ -394,7 +394,7 @@
+       mpz_mul (pm1, r, p0q);
+       mpz_add_ui (p, pm1, 1);
+ 
+-//      assert(mpz_sizeinbase(p, 2) == bits);
++      assert(mpz_sizeinbase(p, 2) == bits);
+ 
+       /* Should use GMP trial division interface when that
+ 	 materializes, we don't need any testing beyond trial
+@@ -466,14 +466,14 @@
+ 		    void *random_ctx, nettle_random_func *random,
+ 		    void *progress_ctx, nettle_progress_func *progress)
+ {
+-//  assert (bits >= 3);
++  assert (bits >= 3);
+   if (bits <= 10)
+     {
+       unsigned first;
+       unsigned choices;
+       uint8_t buf;
+ 
+-//      assert (!top_bits_set);
++      assert (!top_bits_set);
+ 
+       random (random_ctx, sizeof(buf), &buf);
+ 
+@@ -489,7 +489,7 @@
+       unsigned long x;
+       unsigned j;
+       
+-//      assert (!top_bits_set);
++      assert (!top_bits_set);
+ 
+       highbit = 1L << (bits - 1);
+ 
+diff -urN nettle-3.4.1/buffer.c nettle-3.4.1.orig/buffer.c
+--- nettle-3.4.1/buffer.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/buffer.c	2018-12-24 14:43:35.860916883 +0000
+@@ -45,7 +45,7 @@
+ nettle_buffer_grow(struct nettle_buffer *buffer,
+ 		   size_t length)
+ {
+-//  assert(buffer->size <= buffer->alloc);
++  assert(buffer->size <= buffer->alloc);
+   
+   if (buffer->size + length > buffer->alloc)
+     {
+diff -urN nettle-3.4.1/camellia128-crypt.c nettle-3.4.1.orig/camellia128-crypt.c
+--- nettle-3.4.1/camellia128-crypt.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/camellia128-crypt.c	2018-12-24 14:43:35.856916047 +0000
+@@ -47,7 +47,7 @@
+ 		  size_t length, uint8_t *dst,
+ 		  const uint8_t *src)
+ {
+-//  assert(!(length % CAMELLIA_BLOCK_SIZE) );
++  assert(!(length % CAMELLIA_BLOCK_SIZE) );
+   _camellia_crypt(_CAMELLIA128_NKEYS, ctx->keys,
+ 		  &_camellia_table,
+ 		  length, dst, src);
+diff -urN nettle-3.4.1/camellia256-crypt.c nettle-3.4.1.orig/camellia256-crypt.c
+--- nettle-3.4.1/camellia256-crypt.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/camellia256-crypt.c	2018-12-24 14:43:35.840912702 +0000
+@@ -47,7 +47,7 @@
+ 		  size_t length, uint8_t *dst,
+ 		  const uint8_t *src)
+ {
+-//  assert(!(length % CAMELLIA_BLOCK_SIZE) );
++  assert(!(length % CAMELLIA_BLOCK_SIZE) );
+   _camellia_crypt(_CAMELLIA256_NKEYS, ctx->keys,
+ 		  &_camellia_table,
+ 		  length, dst, src);
+diff -urN nettle-3.4.1/cast128.c nettle-3.4.1.orig/cast128.c
+--- nettle-3.4.1/cast128.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/cast128.c	2018-12-24 14:43:35.848914374 +0000
+@@ -230,8 +230,8 @@
+   uint32_t w;
+   int full;
+ 
+-//  assert (length >= CAST5_MIN_KEY_SIZE);
+-//  assert (length <= CAST5_MAX_KEY_SIZE);
++  assert (length >= CAST5_MIN_KEY_SIZE);
++  assert (length <= CAST5_MAX_KEY_SIZE);
+ 
+   full = (length > CAST_SMALL_KEY);
+ 
+diff -urN nettle-3.4.1/cbc.c nettle-3.4.1.orig/cbc.c
+--- nettle-3.4.1/cbc.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/cbc.c	2018-12-24 14:43:35.856916047 +0000
+@@ -50,7 +50,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % block_size));
++  assert(!(length % block_size));
+ 
+   for ( ; length; length -= block_size, src += block_size, dst += block_size)
+     {
+@@ -69,7 +69,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % block_size));
++  assert(!(length % block_size));
+ 
+   if (!length)
+     return;
+diff -urN nettle-3.4.1/ccm.c nettle-3.4.1.orig/ccm.c
+--- nettle-3.4.1/ccm.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ccm.c	2018-12-24 14:43:35.840912702 +0000
+@@ -101,8 +101,8 @@
+   unsigned int i;
+ 
+   /* Sanity check the nonce length. */
+-//  assert(noncelen >= CCM_MIN_NONCE_SIZE);
+-//  assert(noncelen <= CCM_MAX_NONCE_SIZE);
++  assert(noncelen >= CCM_MIN_NONCE_SIZE);
++  assert(noncelen <= CCM_MAX_NONCE_SIZE);
+ 
+   /* Generate the IV */
+   iv[CCM_OFFSET_FLAGS] = flags | CCM_FLAG_SET_L(CCM_L_SIZE(noncelen));
+@@ -113,7 +113,7 @@
+   }
+ 
+   /* Ensure the count was not truncated. */
+-//  assert(!count);
++  assert(!count);
+ }
+ 
+ void
+@@ -225,7 +225,7 @@
+ 	   size_t length, uint8_t *digest)
+ {
+   int i = CCM_BLOCK_SIZE - CCM_FLAG_GET_L(ctx->ctr.b[CCM_OFFSET_FLAGS]);
+-//  assert(length <= CCM_BLOCK_SIZE);
++  assert(length <= CCM_BLOCK_SIZE);
+   while (i < CCM_BLOCK_SIZE)  ctx->ctr.b[i++] = 0;
+   ccm_pad(ctx, cipher, f);
+   ctr_crypt(cipher, f, CCM_BLOCK_SIZE, ctx->ctr.b, length, digest, ctx->tag.b);
+@@ -239,7 +239,7 @@
+ {
+   struct ccm_ctx ctx;
+   uint8_t *tag = dst + (clength-tlength);
+-//  assert(clength >= tlength);
++  assert(clength >= tlength);
+   ccm_set_nonce(&ctx, cipher, f, nlength, nonce, alength, clength-tlength, tlength);
+   ccm_update(&ctx, cipher, f, alength, adata);
+   ccm_encrypt(&ctx, cipher, f, clength-tlength, dst, src);
+diff -urN nettle-3.4.1/chacha-core-internal.c nettle-3.4.1.orig/chacha-core-internal.c
+--- nettle-3.4.1/chacha-core-internal.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/chacha-core-internal.c	2018-12-24 14:43:35.852915211 +0000
+@@ -93,7 +93,7 @@
+   uint32_t x[_CHACHA_STATE_LENGTH];
+   unsigned i;
+ 
+-//  assert ( (rounds & 1) == 0);
++  assert ( (rounds & 1) == 0);
+ 
+   memcpy (x, src, sizeof(x));
+   for (i = 0; i < rounds;i += 2)
+diff -urN nettle-3.4.1/chacha-poly1305.c nettle-3.4.1.orig/chacha-poly1305.c
+--- nettle-3.4.1/chacha-poly1305.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/chacha-poly1305.c	2018-12-24 14:43:35.848914374 +0000
+@@ -113,7 +113,7 @@
+ chacha_poly1305_update (struct chacha_poly1305_ctx *ctx,
+ 			size_t length, const uint8_t *data)
+ {
+-//  assert (ctx->data_size == 0);  
++  assert (ctx->data_size == 0);  
+   poly1305_update (ctx, length, data);
+   ctx->auth_size += length;
+ }
+@@ -126,7 +126,7 @@
+   if (!length)
+     return;
+ 
+-//  assert (ctx->data_size % CHACHA_POLY1305_BLOCK_SIZE == 0);
++  assert (ctx->data_size % CHACHA_POLY1305_BLOCK_SIZE == 0);
+   poly1305_pad (ctx);
+ 
+   chacha_crypt (&ctx->chacha, length, dst, src);
+@@ -141,7 +141,7 @@
+   if (!length)
+     return;
+ 
+-//  assert (ctx->data_size % CHACHA_POLY1305_BLOCK_SIZE == 0);
++  assert (ctx->data_size % CHACHA_POLY1305_BLOCK_SIZE == 0);
+   poly1305_pad (ctx);
+ 
+   poly1305_update (ctx, length, src);
+diff -urN nettle-3.4.1/der-iterator.c nettle-3.4.1.orig/der-iterator.c
+--- nettle-3.4.1/der-iterator.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/der-iterator.c	2018-12-24 14:43:35.856916047 +0000
+@@ -180,7 +180,7 @@
+ asn1_der_decode_constructed(struct asn1_der_iterator *i,
+ 			    struct asn1_der_iterator *contents)
+ {
+-//  assert(i->type & ASN1_TYPE_CONSTRUCTED);
++  assert(i->type & ASN1_TYPE_CONSTRUCTED);
+   return asn1_der_iterator_first(contents, i->length, i->data);
+ }
+ 
+@@ -198,7 +198,7 @@
+ asn1_der_decode_bitstring(struct asn1_der_iterator *i,
+ 			  struct asn1_der_iterator *contents)
+ {
+-//  assert(i->type == ASN1_BITSTRING);
++  assert(i->type == ASN1_BITSTRING);
+   /* First byte is the number of padding bits, which must be zero. */
+   if (i->length == 0  || i->data[0] != 0)
+     return ASN1_ITERATOR_ERROR;
+diff -urN nettle-3.4.1/des.c nettle-3.4.1.orig/des.c
+--- nettle-3.4.1/des.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/des.c	2018-12-24 14:43:35.844913538 +0000
+@@ -279,7 +279,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % DES_BLOCK_SIZE));
++  assert(!(length % DES_BLOCK_SIZE));
+   
+   while (length)
+     {
+@@ -295,7 +295,7 @@
+ 	    size_t length, uint8_t *dst,
+ 	    const uint8_t *src)
+ {
+-//  assert(!(length % DES_BLOCK_SIZE));
++  assert(!(length % DES_BLOCK_SIZE));
+ 
+   while (length)
+     {
+diff -urN nettle-3.4.1/eax.c nettle-3.4.1.orig/eax.c
+--- nettle-3.4.1/eax.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/eax.c	2018-12-24 14:43:35.844913538 +0000
+@@ -162,8 +162,8 @@
+ 	    const void *cipher, nettle_cipher_func *f,
+ 	    size_t length, uint8_t *digest)
+ {
+-//  assert (length > 0);
+-//  assert (length <= EAX_BLOCK_SIZE);
++  assert (length > 0);
++  assert (length <= EAX_BLOCK_SIZE);
+   omac_final (&eax->omac_data, key, cipher, f);
+   omac_final (&eax->omac_message, key, cipher, f);
+ 
+diff -urN nettle-3.4.1/ecc-192.c nettle-3.4.1.orig/ecc-192.c
+--- nettle-3.4.1/ecc-192.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-192.c	2018-12-24 14:43:35.844913538 +0000
+@@ -67,7 +67,7 @@
+   cy = mpn_add_n (rp + 2, rp + 2, rp + 8, 4);
+   cy = sec_add_1 (rp + 6, rp + 6, 2, cy);
+   cy += mpn_add_n (rp + 4, rp + 4, rp + 8, 4);
+-//  assert (cy <= 2);
++  assert (cy <= 2);
+ 
+   rp[8] = cy;
+ 
+@@ -77,9 +77,9 @@
+   cy += mpn_add_n (rp + 2, rp + 2, rp + 6, 3);
+   cy = sec_add_1 (rp + 5, rp + 5, 1, cy);
+   
+-//  assert (cy <= 1);
++  assert (cy <= 1);
+   cy = cnd_add_n (cy, rp, ecc_Bmodp, 6);
+-//  assert (cy == 0);  
++  assert (cy == 0);  
+ }
+ #elif GMP_NUMB_BITS == 64
+ /* p is 3 limbs, p = B^3 - B - 1 */
+@@ -92,7 +92,7 @@
+   cy = mpn_add_n (rp + 1, rp + 1, rp + 4, 2);
+   cy = sec_add_1 (rp + 3, rp + 3, 1, cy);
+   cy += mpn_add_n (rp + 2, rp + 2, rp + 4, 2);
+-//  assert (cy <= 2);
++  assert (cy <= 2);
+ 
+   rp[4] = cy;
+ 
+@@ -101,9 +101,9 @@
+   cy = sec_add_1 (rp + 2, rp + 2, 1, cy);
+   cy += mpn_add_n (rp + 1, rp + 1, rp + 3, 2);
+ 
+-//  assert (cy <= 1);
++  assert (cy <= 1);
+   cy = cnd_add_n (cy, rp, ecc_Bmodp, 3);
+-//  assert (cy == 0);  
++  assert (cy == 0);  
+ }
+   
+ #else
+diff -urN nettle-3.4.1/ecc-25519.c nettle-3.4.1.orig/ecc-25519.c
+--- nettle-3.4.1/ecc-25519.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-25519.c	2018-12-24 14:43:35.840912702 +0000
+@@ -90,13 +90,13 @@
+ 			 q->B_shifted, ECC_LIMB_SIZE,
+ 			 rp[n + ECC_LIMB_SIZE]);
+       /* Top limb of mBmodq_shifted is zero, so we get cy == 0 or 1 */
+-//      assert (cy < 2);
++      assert (cy < 2);
+       cnd_add_n (cy, rp+n, q->m, ECC_LIMB_SIZE);
+     }
+ 
+   cy = mpn_submul_1 (rp, q->m, ECC_LIMB_SIZE,
+ 		     rp[ECC_LIMB_SIZE-1] >> (GMP_NUMB_BITS - QHIGH_BITS));
+-//  assert (cy < 2);
++  assert (cy < 2);
+   cnd_add_n (cy, rp, q->m, ECC_LIMB_SIZE);
+ }
+ 
+diff -urN nettle-3.4.1/ecc-256.c nettle-3.4.1.orig/ecc-256.c
+--- nettle-3.4.1/ecc-256.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-256.c	2018-12-24 14:43:35.840912702 +0000
+@@ -111,7 +111,7 @@
+       q1 += t;
+       q2 += t + (q1 < t);
+ 
+-//      assert (q2 < 2);
++      assert (q2 < 2);
+ 
+       /*
+ 	 n-1 n-2 n-3 n-4
+@@ -208,7 +208,7 @@
+       u1 += t;
+       u2 += (t << 32) + (u1 < t);
+ 
+-//      assert (q2 < 2);
++      assert (q2 < 2);
+ 
+       c0 = cnd_sub_n (q2, rp + n - 3, q->m, 1);
+       c0 += (-q2) & q->m[1];
+diff -urN nettle-3.4.1/ecc-384.c nettle-3.4.1.orig/ecc-384.c
+--- nettle-3.4.1/ecc-384.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-384.c	2018-12-24 14:43:35.856916047 +0000
+@@ -77,10 +77,10 @@
+   cy = sec_add_1 (rp + 15, rp + 15, 1, cy);
+ 
+   cy += mpn_add_n (rp + 8, rp + 8, rp + 16, 8);
+-//  assert (bw <= cy);
++  assert (bw <= cy);
+   cy -= bw;
+ 
+-//  assert (cy <= 2);  
++  assert (cy <= 2);  
+   rp[16] = cy;
+ 
+   /* Reduce from 17 to 12 limbs */
+@@ -96,11 +96,11 @@
+   cy += mpn_add_n (rp + 4, rp + 4, rp + 12, 5);
+   cy = sec_add_1 (rp + 9, rp + 9, 3, cy);
+ 
+-//  assert (cy >= bw);
++  assert (cy >= bw);
+   cy -= bw;
+-//  assert (cy <= 1);
++  assert (cy <= 1);
+   cy = cnd_add_n (cy, rp, p->B, ECC_LIMB_SIZE);
+-//  assert (cy == 0);
++  assert (cy == 0);
+ }
+ #elif GMP_NUMB_BITS == 64
+ /* p is 6 limbs, and B^6 - p = B^2 + 2^32 (B - 1) + 1. Eliminate 3
+@@ -123,7 +123,7 @@
+   cy += mpn_add_n (rp + 2, rp + 2, tp, 6);
+   cy += mpn_add_n (rp + 4, rp + 4, rp + 8, 4);
+ 
+-//  assert (cy <= 2);
++  assert (cy <= 2);
+   rp[8] = cy;
+ 
+   /* Reduce from 9 to 6 limbs */
+@@ -138,10 +138,10 @@
+   cy += mpn_add_n (rp + 2, rp + 2, rp + 6, 3);
+ 
+   cy = sec_add_1 (rp + 5, rp + 5, 1, cy);
+-//  assert (cy <= 1);
++  assert (cy <= 1);
+ 
+   cy = cnd_add_n (cy, rp, p->B, ECC_LIMB_SIZE);
+-//  assert (cy == 0);  
++  assert (cy == 0);  
+ }
+ #else
+ #define ecc_384_modp ecc_mod
+diff -urN nettle-3.4.1/eccdata.c nettle-3.4.1.orig/eccdata.c
+--- nettle-3.4.1/eccdata.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/eccdata.c	2018-12-24 14:43:35.856916047 +0000
+@@ -273,8 +273,8 @@
+      versions. */
+   unsigned k;
+ 
+-//  assert (r != p);
+-//  assert (mpz_sgn (n) > 0);
++  assert (r != p);
++  assert (mpz_sgn (n) > 0);
+ 
+   ecc_set (r, p);
+ 
+@@ -865,7 +865,7 @@
+ 	}
+       else if (!mpz_sgn (p->y))
+ 	{
+-//	  assert (!mpz_sgn (p->x));
++	  assert (!mpz_sgn (p->x));
+ 	  mpz_set_si (x, 0);
+ 	  mpz_set_si (y, -1);
+ 	}
+@@ -1084,7 +1084,7 @@
+ 
+       mpz_sub_ui (s, ecc->p, 1);
+       e = mpz_scan1 (s, 0);
+-//      assert (e > 1);
++      assert (e > 1);
+ 
+       mpz_fdiv_q_2exp (s, s, e);
+ 
+@@ -1106,7 +1106,7 @@
+ 	    break;
+ 	}
+       mpz_add_ui (t, t, 1);
+-//      assert (mpz_cmp (t, ecc->p) == 0);
++      assert (mpz_cmp (t, ecc->p) == 0);
+       output_bignum ("ecc_sqrt_z", z, limb_size, bits_per_limb);
+ 
+       mpz_fdiv_q_2exp (t, s, 1);
+diff -urN nettle-3.4.1/ecc-eh-to-a.c nettle-3.4.1.orig/ecc-eh-to-a.c
+--- nettle-3.4.1/ecc-eh-to-a.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-eh-to-a.c	2018-12-24 14:43:35.844913538 +0000
+@@ -72,11 +72,11 @@
+ 	     duplicates end of ecc_25519_modq. FIXME: Is this needed
+ 	     at all? Full reduction mod p is maybe sufficient. */
+ 	  unsigned shift;
+-//	  assert (ecc->p.bit_size == 255);
++	  assert (ecc->p.bit_size == 255);
+ 	  shift = 252 - GMP_NUMB_BITS * (ecc->p.size - 1);
+ 	  cy = mpn_submul_1 (r, ecc->q.m, ecc->p.size,
+ 			     r[ecc->p.size-1] >> shift);
+-//	  assert (cy < 2);
++	  assert (cy < 2);
+ 	  cnd_add_n (cy, r, ecc->q.m, ecc->p.size);
+ 	}
+       return;
+diff -urN nettle-3.4.1/ecc-mod-arith.c nettle-3.4.1.orig/ecc-mod-arith.c
+--- nettle-3.4.1/ecc-mod-arith.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-mod-arith.c	2018-12-24 14:43:35.848914374 +0000
+@@ -50,7 +50,7 @@
+   cy = mpn_add_n (rp, ap, bp, m->size);
+   cy = cnd_add_n (cy, rp, m->B, m->size);
+   cy = cnd_add_n (cy, rp, m->B, m->size);
+-//  assert (cy == 0);  
++  assert (cy == 0);  
+ }
+ 
+ void
+@@ -61,7 +61,7 @@
+   cy = mpn_sub_n (rp, ap, bp, m->size);
+   cy = cnd_sub_n (cy, rp, m->B, m->size);
+   cy = cnd_sub_n (cy, rp, m->B, m->size);
+-//  assert (cy == 0);  
++  assert (cy == 0);  
+ }
+ 
+ void
+@@ -70,13 +70,13 @@
+ {
+   mp_limb_t hi;
+ 
+-//  assert (b <= 0xffffffff);
++  assert (b <= 0xffffffff);
+   hi = mpn_mul_1 (rp, ap, m->size, b);
+   hi = mpn_addmul_1 (rp, m->B, m->size, hi);
+-//  assert (hi <= 1);
++  assert (hi <= 1);
+   hi = cnd_add_n (hi, rp, m->B, m->size);
+   /* Sufficient if b < B^size / p */
+-//  assert (hi == 0);
++  assert (hi == 0);
+ }
+ 
+ void
+@@ -85,13 +85,13 @@
+ {
+   mp_limb_t hi;
+ 
+-//  assert (b <= 0xffffffff);
++  assert (b <= 0xffffffff);
+   hi = mpn_addmul_1 (rp, ap, m->size, b);
+   hi = mpn_addmul_1 (rp, m->B, m->size, hi);
+-//  assert (hi <= 1);
++  assert (hi <= 1);
+   hi = cnd_add_n (hi, rp, m->B, m->size);
+   /* Sufficient roughly if b < B^size / p */
+-//  assert (hi == 0);
++  assert (hi == 0);
+ }
+   
+ void
+@@ -100,13 +100,13 @@
+ {
+   mp_limb_t hi;
+ 
+-//  assert (b <= 0xffffffff);
++  assert (b <= 0xffffffff);
+   hi = mpn_submul_1 (rp, ap, m->size, b);
+   hi = mpn_submul_1 (rp, m->B, m->size, hi);
+-//  assert (hi <= 1);
++  assert (hi <= 1);
+   hi = cnd_sub_n (hi, rp, m->B, m->size);
+   /* Sufficient roughly if b < B^size / p */
+-//  assert (hi == 0);
++  assert (hi == 0);
+ }
+ 
+ /* NOTE: mul and sqr needs 2*m->size limbs at rp */
+diff -urN nettle-3.4.1/ecc-mod.c nettle-3.4.1.orig/ecc-mod.c
+--- nettle-3.4.1/ecc-mod.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-mod.c	2018-12-24 14:43:35.856916047 +0000
+@@ -51,7 +51,7 @@
+   mp_size_t i;
+   unsigned shift;
+ 
+-//  assert (bn < mn);
++  assert (bn < mn);
+ 
+   /* FIXME: Could use mpn_addmul_2. */
+   /* Eliminate sn limbs at a time */
+@@ -87,7 +87,7 @@
+ 				     
+ 	  hi = mpn_add_n (rp + rn - sn, rp + rn - sn, rp + rn, sn);
+ 	  hi = cnd_add_n (hi, rp + rn - mn, m->B, mn);
+-//	  assert (hi == 0);
++	  assert (hi == 0);
+ 	}
+     }
+ 
+@@ -114,6 +114,6 @@
+   else
+     {
+       hi = cnd_add_n (hi, rp, m->B_shifted, mn);
+-//      assert (hi == 0);
++      assert (hi == 0);
+     }
+ }
+diff -urN nettle-3.4.1/ecc-mod-inv.c nettle-3.4.1.orig/ecc-mod-inv.c
+--- nettle-3.4.1/ecc-mod-inv.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-mod-inv.c	2018-12-24 14:43:35.856916047 +0000
+@@ -88,7 +88,7 @@
+        b = m,      v = 0
+      */
+ 
+-//  assert (ap != vp);
++  assert (ap != vp);
+ 
+   up[0] = 1;
+   mpn_zero (up+1, n - 1);
+@@ -135,7 +135,7 @@
+          also v = orig_a^{-1} (mod m)
+       */
+ 
+-//      assert (bp[0] & 1);
++      assert (bp[0] & 1);
+       odd = ap[0] & 1;
+ 
+       swap = cnd_sub_n (odd, ap, bp, n);
+@@ -145,15 +145,15 @@
+       cnd_swap (swap, up, vp, n);
+       cy = cnd_sub_n (odd, up, vp, n);
+       cy -= cnd_add_n (cy, up, m->m, n);
+-//      assert (cy == 0);
++      assert (cy == 0);
+ 
+       cy = mpn_rshift (ap, ap, n, 1);
+-//      assert (cy == 0);
++      assert (cy == 0);
+       cy = mpn_rshift (up, up, n, 1);
+       cy = cnd_add_n (cy, up, m->mp1h, n);
+-//      assert (cy == 0);
++      assert (cy == 0);
+     }
+-//  assert ( (ap[0] | ap[n-1]) == 0);
++  assert ( (ap[0] | ap[n-1]) == 0);
+ #undef ap
+ #undef bp
+ #undef up
+diff -urN nettle-3.4.1/ecc-mul-a.c nettle-3.4.1.orig/ecc-mul-a.c
+--- nettle-3.4.1/ecc-mul-a.c	2018-12-24 14:44:09.318594693 +0000
++++ nettle-3.4.1.orig/ecc-mul-a.c	2018-12-24 14:43:35.844913538 +0000
+@@ -142,7 +142,7 @@
+   if (limb_index < ecc->p.size - 1)
+     bits |= np[limb_index + 1] << (GMP_NUMB_BITS - shift);
+ 
+-//  assert (bits < TABLE_SIZE);
++  assert (bits < TABLE_SIZE);
+ 
+   sec_tabselect (r, 3*ecc->p.size, table, TABLE_SIZE, bits);
+   is_zero = (bits == 0);
+@@ -159,7 +159,7 @@
+ 	{
+ 	  if (limb_index == 0)
+ 	    {
+-//	      assert (shift == 0);
++	      assert (shift == 0);
+ 	      break;
+ 	    }
+ 	  bits = w << (ECC_MUL_A_WBITS - shift);
+diff -urN nettle-3.4.1/ecc-mul-a-eh.c nettle-3.4.1.orig/ecc-mul-a-eh.c
+--- nettle-3.4.1/ecc-mul-a-eh.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-mul-a-eh.c	2018-12-24 14:43:35.852915211 +0000
+@@ -138,7 +138,7 @@
+   if (limb_index < ecc->p.size - 1)
+     bits |= np[limb_index + 1] << (GMP_NUMB_BITS - shift);
+ 
+-//  assert (bits < TABLE_SIZE);
++  assert (bits < TABLE_SIZE);
+ 
+   sec_tabselect (r, 3*ecc->p.size, table, TABLE_SIZE, bits);
+ 
+@@ -154,7 +154,7 @@
+ 	{
+ 	  if (limb_index == 0)
+ 	    {
+-//	      assert (shift == 0);
++	      assert (shift == 0);
+ 	      break;
+ 	    }
+ 	  bits = w << (ECC_MUL_A_EH_WBITS - shift);
+diff -urN nettle-3.4.1/ecc-pm1-redc.c nettle-3.4.1.orig/ecc-pm1-redc.c
+--- nettle-3.4.1/ecc-pm1-redc.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-pm1-redc.c	2018-12-24 14:43:35.856916047 +0000
+@@ -54,7 +54,7 @@
+ 			  m->redc_mpm1, m->size - k, rp[i]);
+   hi = mpn_sub_n (rp, rp + m->size, rp, m->size);
+   cy = cnd_add_n (hi, rp, m->m, m->size);
+-//  assert (cy == hi);
++  assert (cy == hi);
+ 
+   if (shift > 0)
+     {
+diff -urN nettle-3.4.1/ecc-point-mul.c nettle-3.4.1.orig/ecc-point-mul.c
+--- nettle-3.4.1/ecc-point-mul.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-point-mul.c	2018-12-24 14:43:35.848914374 +0000
+@@ -49,8 +49,8 @@
+   mp_size_t itch = 3*size + ecc->mul_itch;
+   mp_limb_t *scratch = gmp_alloc_limbs (itch);
+ 
+-//  assert (n->ecc == ecc);
+-//  assert (p->ecc == ecc);
++  assert (n->ecc == ecc);
++  assert (p->ecc == ecc);
+ 
+   ecc->mul (ecc, scratch, n->p, p->p, scratch + 3*size);
+   ecc->h_to_a (ecc, 0, r->p, scratch, scratch + 3*size);
+diff -urN nettle-3.4.1/ecc-point-mul-g.c nettle-3.4.1.orig/ecc-point-mul-g.c
+--- nettle-3.4.1/ecc-point-mul-g.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-point-mul-g.c	2018-12-24 14:43:35.856916047 +0000
+@@ -49,7 +49,7 @@
+   mp_limb_t size = ecc->p.size;
+   mp_size_t itch = 3*size + ecc->mul_g_itch;
+ 
+-//  assert (n->ecc == ecc);
++  assert (n->ecc == ecc);
+ 
+   TMP_ALLOC (scratch, itch);
+ 
+diff -urN nettle-3.4.1/ecc-pp1-redc.c nettle-3.4.1.orig/ecc-pp1-redc.c
+--- nettle-3.4.1/ecc-pp1-redc.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-pp1-redc.c	2018-12-24 14:43:35.856916047 +0000
+@@ -64,6 +64,6 @@
+   else
+     {
+       cy = cnd_sub_n (hi, rp, m->m, m->size);
+-//      assert (cy == hi);      
++      assert (cy == hi);      
+     }
+ }
+diff -urN nettle-3.4.1/ecc-random.c nettle-3.4.1.orig/ecc-random.c
+--- nettle-3.4.1/ecc-random.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecc-random.c	2018-12-24 14:43:35.856916047 +0000
+@@ -72,7 +72,7 @@
+ 
+   /* The bytes ought to fit in the scratch area, unless we have very
+      unusual limb and byte sizes. */
+-//  assert (nbytes <= m->size * sizeof (mp_limb_t));
++  assert (nbytes <= m->size * sizeof (mp_limb_t));
+ 
+   do
+     {
+diff -urN nettle-3.4.1/ecdsa-keygen.c nettle-3.4.1.orig/ecdsa-keygen.c
+--- nettle-3.4.1/ecdsa-keygen.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/ecdsa-keygen.c	2018-12-24 14:43:35.856916047 +0000
+@@ -51,7 +51,7 @@
+   const struct ecc_curve *ecc = pub->ecc;
+   mp_size_t itch = 3*ecc->p.size + ecc->mul_g_itch;
+ 
+-//  assert (key->ecc == ecc);
++  assert (key->ecc == ecc);
+ 
+   TMP_ALLOC (p, itch);
+ 
+diff -urN nettle-3.4.1/eddsa-expand.c nettle-3.4.1.orig/eddsa-expand.c
+--- nettle-3.4.1/eddsa-expand.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/eddsa-expand.c	2018-12-24 14:43:35.852915211 +0000
+@@ -54,7 +54,7 @@
+ {
+   size_t nbytes = 1 + ecc->p.bit_size / 8;
+ 
+-//  assert (H->digest_size >= 2*nbytes);
++  assert (H->digest_size >= 2*nbytes);
+ 
+   H->init (ctx);
+   H->update (ctx, nbytes, key);
+diff -urN nettle-3.4.1/eddsa-sign.c nettle-3.4.1.orig/eddsa-sign.c
+--- nettle-3.4.1/eddsa-sign.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/eddsa-sign.c	2018-12-24 14:43:35.836911865 +0000
+@@ -70,7 +70,7 @@
+   size = ecc->p.size;
+   nbytes = 1 + ecc->p.bit_size / 8;
+ 
+-//  assert (H->digest_size >= 2 * nbytes);
++  assert (H->digest_size >= 2 * nbytes);
+ 
+   H->update (ctx, length, msg);
+   H->digest (ctx, 2*nbytes, hash);
+@@ -91,11 +91,11 @@
+   {
+     unsigned shift;
+     mp_limb_t cy;
+-//    assert (ecc->p.bit_size == 255);
++    assert (ecc->p.bit_size == 255);
+     shift = 252 - GMP_NUMB_BITS * (ecc->p.size - 1);
+     cy = mpn_submul_1 (sp, ecc->q.m, ecc->p.size,
+ 		       sp[ecc->p.size-1] >> shift);
+-//    assert (cy < 2);
++    assert (cy < 2);
+     cnd_add_n (cy, sp, ecc->q.m, ecc->p.size);
+   }
+   mpn_get_base256_le (signature + nbytes, nbytes, sp, ecc->q.size);
+diff -urN nettle-3.4.1/examples/eratosthenes.c nettle-3.4.1.orig/examples/eratosthenes.c
+--- nettle-3.4.1/examples/eratosthenes.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/examples/eratosthenes.c	2018-12-24 14:43:35.840912702 +0000
+@@ -391,9 +391,9 @@
+ 	      unsigned long k = (block_start + n - 1) / (2*n);
+ 	      sieve_start_bit = n * k + bit;
+ 
+-//	      assert(sieve_start_bit < block_start_bit + n);
++	      assert(sieve_start_bit < block_start_bit + n);
+ 	    }
+-//	  assert(sieve_start_bit >= block_start_bit);
++	  assert(sieve_start_bit >= block_start_bit);
+ 
+ 	  vector_clear_bits(block, n, sieve_start_bit - block_start_bit, block_nbits);
+ 	}
+diff -urN nettle-3.4.1/examples/nettle-openssl.c nettle-3.4.1.orig/examples/nettle-openssl.c
+--- nettle-3.4.1/examples/nettle-openssl.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/examples/nettle-openssl.c	2018-12-24 14:43:35.840912702 +0000
+@@ -80,7 +80,7 @@
+ {
+   struct openssl_cipher_ctx *ctx = p;
+   ctx->evp = EVP_CIPHER_CTX_new();
+-//  assert(EVP_EncryptInit_ex(ctx->evp, cipher, NULL, key, NULL) == 1);
++  assert(EVP_EncryptInit_ex(ctx->evp, cipher, NULL, key, NULL) == 1);
+   EVP_CIPHER_CTX_set_padding(ctx->evp, 0);
+ }
+ static void
+@@ -89,7 +89,7 @@
+ {
+   struct openssl_cipher_ctx *ctx = p;
+   ctx->evp = EVP_CIPHER_CTX_new();
+-//  assert(EVP_DecryptInit_ex(ctx->evp, cipher, NULL, key, NULL) == 1);
++  assert(EVP_DecryptInit_ex(ctx->evp, cipher, NULL, key, NULL) == 1);
+   EVP_CIPHER_CTX_set_padding(ctx->evp, 0);
+ }
+ 
+@@ -99,7 +99,7 @@
+ {
+   const struct openssl_cipher_ctx *ctx = p;
+   int len;
+-//  assert(EVP_EncryptUpdate(ctx->evp, dst, &len, src, length) == 1);
++  assert(EVP_EncryptUpdate(ctx->evp, dst, &len, src, length) == 1);
+ }
+ static void
+ openssl_evp_decrypt(const void *p, size_t length,
+@@ -107,7 +107,7 @@
+ {
+   const struct openssl_cipher_ctx *ctx = p;
+   int len;
+-//  assert(EVP_DecryptUpdate(ctx->evp, dst, &len, src, length) == 1);
++  assert(EVP_DecryptUpdate(ctx->evp, dst, &len, src, length) == 1);
+ }
+ 
+ /* AES */
+@@ -289,7 +289,7 @@
+ openssl_md5_digest(void *ctx,
+ 		   size_t length, uint8_t *dst)
+ {
+-//  assert(length == SHA_DIGEST_LENGTH);
++  assert(length == SHA_DIGEST_LENGTH);
+   MD5_Final(dst, ctx);
+   MD5_Init(ctx);
+ }
+@@ -325,7 +325,7 @@
+ openssl_sha1_digest(void *ctx,
+ 		    size_t length, uint8_t *dst)
+ {
+-//  assert(length == SHA_DIGEST_LENGTH);
++  assert(length == SHA_DIGEST_LENGTH);
+   SHA1_Final(dst, ctx);
+   SHA1_Init(ctx);
+ }
+diff -urN nettle-3.4.1/examples/rsa-encrypt.c nettle-3.4.1.orig/examples/rsa-encrypt.c
+--- nettle-3.4.1/examples/rsa-encrypt.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/examples/rsa-encrypt.c	2018-12-24 14:43:35.840912702 +0000
+@@ -128,7 +128,7 @@
+ 	  leftover = size % AES_BLOCK_SIZE;
+ 	  padding = AES_BLOCK_SIZE - leftover;
+ 
+-//	  assert (size + padding <= BLOCK_SIZE);
++	  assert (size + padding <= BLOCK_SIZE);
+ 	  
+ 	  if (padding > 1)
+ 	    yarrow256_random(&ctx->yarrow, padding - 1, buffer + size);
+@@ -138,7 +138,7 @@
+ 	  buffer[size - 1] = padding;
+ 	  CBC_ENCRYPT(&ctx->aes, aes_encrypt, size, buffer, buffer);
+ 
+-//	  assert (size + SHA1_DIGEST_SIZE <= sizeof(buffer));
++	  assert (size + SHA1_DIGEST_SIZE <= sizeof(buffer));
+ 
+ 	  hmac_sha1_digest(&ctx->hmac, SHA1_DIGEST_SIZE, buffer + size);
+ 	  size += SHA1_DIGEST_SIZE;
+diff -urN nettle-3.4.1/gcm.c nettle-3.4.1.orig/gcm.c
+--- nettle-3.4.1/gcm.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/gcm.c	2018-12-24 14:43:35.856916047 +0000
+@@ -426,8 +426,8 @@
+ gcm_update(struct gcm_ctx *ctx, const struct gcm_key *key,
+ 	   size_t length, const uint8_t *data)
+ {
+-//  assert(ctx->auth_size % GCM_BLOCK_SIZE == 0);
+-//  assert(ctx->data_size == 0);
++  assert(ctx->auth_size % GCM_BLOCK_SIZE == 0);
++  assert(ctx->data_size == 0);
+ 
+   gcm_hash(key, &ctx->x, length, data);
+ 
+@@ -476,7 +476,7 @@
+ 	     const void *cipher, nettle_cipher_func *f,
+ 	     size_t length, uint8_t *dst, const uint8_t *src)
+ {
+-//  assert(ctx->data_size % GCM_BLOCK_SIZE == 0);
++  assert(ctx->data_size % GCM_BLOCK_SIZE == 0);
+ 
+   gcm_crypt(ctx, cipher, f, length, dst, src);
+   gcm_hash(key, &ctx->x, length, dst);
+@@ -489,7 +489,7 @@
+ 	    const void *cipher, nettle_cipher_func *f,
+ 	    size_t length, uint8_t *dst, const uint8_t *src)
+ {
+-//  assert(ctx->data_size % GCM_BLOCK_SIZE == 0);
++  assert(ctx->data_size % GCM_BLOCK_SIZE == 0);
+ 
+   gcm_hash(key, &ctx->x, length, src);
+   gcm_crypt(ctx, cipher, f, length, dst, src);
+@@ -504,7 +504,7 @@
+ {
+   uint8_t buffer[GCM_BLOCK_SIZE];
+ 
+-//  assert (length <= GCM_BLOCK_SIZE);
++  assert (length <= GCM_BLOCK_SIZE);
+ 
+   gcm_hash_sizes(key, &ctx->x, ctx->auth_size, ctx->data_size);
+ 
+diff -urN nettle-3.4.1/gmp-glue.c nettle-3.4.1.orig/gmp-glue.c
+--- nettle-3.4.1/gmp-glue.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/gmp-glue.c	2018-12-24 14:43:35.840912702 +0000
+@@ -80,7 +80,7 @@
+ mp_limb_t *
+ mpz_limbs_write (mpz_ptr x, mp_size_t n)
+ {
+-//  assert (n > 0);
++  assert (n > 0);
+   return MPZ_NEWALLOC (x, n);
+ }
+ 
+@@ -88,14 +88,14 @@
+ mp_limb_t *
+ mpz_limbs_modify (mpz_ptr x, mp_size_t n)
+ {
+-//  assert (n > 0);
++  assert (n > 0);
+   return MPZ_REALLOC (x, n);
+ }
+ 
+ void
+ mpz_limbs_finish (mpz_ptr x, mp_size_t n)
+ {
+-//  assert (n >= 0);
++  assert (n >= 0);
+   MPN_NORMALIZE (PTR(x), n);
+ 
+   SIZ (x) = n;
+@@ -138,8 +138,8 @@
+ mpz_limbs_cmp (mpz_srcptr a, const mp_limb_t *bp, mp_size_t bn)
+ {
+   mp_size_t an = mpz_size (a);
+-//  assert (mpz_sgn (a) >= 0);
+-//  assert (bn >= 0);
++  assert (mpz_sgn (a) >= 0);
++  assert (bn >= 0);
+ 
+   if (an < bn)
+     return -1;
+@@ -160,7 +160,7 @@
+   mp_size_t xn = mpz_size (x);
+   mp_ptr xp;
+   
+-//  assert (xn <= n);
++  assert (xn <= n);
+ 
+   xp = mpz_limbs_modify (x, n);
+ 
+@@ -175,7 +175,7 @@
+ {
+   mp_size_t xn = mpz_size (x);
+ 
+-//  assert (xn <= n);
++  assert (xn <= n);
+   mpn_copyi (xp, mpz_limbs_read (x), xn);
+   if (xn < n)
+     mpn_zero (xp + xn, n - xn);
+@@ -317,7 +317,7 @@
+ 
+   void *(*alloc_func)(size_t);
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+ 
+   mp_get_memory_functions (&alloc_func, NULL, NULL);
+   return (mp_limb_t *) alloc_func ( (size_t) n * sizeof(mp_limb_t));
+@@ -327,8 +327,8 @@
+ gmp_free_limbs (mp_limb_t *p, mp_size_t n)
+ {
+   void (*free_func)(void *, size_t);
+-//  assert (n > 0);
+-//  assert (p != 0);
++  assert (n > 0);
++  assert (p != 0);
+   mp_get_memory_functions (NULL, NULL, &free_func);
+ 
+   free_func (p, (size_t) n * sizeof(mp_limb_t));
+@@ -338,7 +338,7 @@
+ gmp_alloc(size_t n)
+ {
+   void *(*alloc_func)(size_t);
+-//  assert (n > 0);
++  assert (n > 0);
+ 
+   mp_get_memory_functions(&alloc_func, NULL, NULL);
+ 
+@@ -349,8 +349,8 @@
+ gmp_free(void *p, size_t n)
+ {
+   void (*free_func)(void *, size_t);
+-//  assert (n > 0);
+-//  assert (p != 0);
++  assert (n > 0);
++  assert (p != 0);
+   mp_get_memory_functions (NULL, NULL, &free_func);
+ 
+   free_func (p, (size_t) n);
+diff -urN nettle-3.4.1/gosthash94.c nettle-3.4.1.orig/gosthash94.c
+--- nettle-3.4.1/gosthash94.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/gosthash94.c	2018-12-24 14:43:35.856916047 +0000
+@@ -569,7 +569,7 @@
+     unsigned index = ctx->length & 31;
+     uint32_t msg32[8];
+ 
+-//    assert(length <= GOSTHASH94_DIGEST_SIZE);
++    assert(length <= GOSTHASH94_DIGEST_SIZE);
+ 
+     /* pad the last block with zeroes and hash it */
+     if (index > 0)
+diff -urN nettle-3.4.1/hmac.c nettle-3.4.1.orig/hmac.c
+--- nettle-3.4.1/hmac.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/hmac.c	2018-12-24 14:43:35.848914374 +0000
+@@ -75,7 +75,7 @@
+       key_length = hash->digest_size;
+     }
+ 
+-//  assert(key_length <= hash->block_size);
++  assert(key_length <= hash->block_size);
+   
+   memset(pad, OPAD, hash->block_size);
+   memxor(pad, key, key_length);
+diff -urN nettle-3.4.1/knuth-lfib.c nettle-3.4.1.orig/knuth-lfib.c
+--- nettle-3.4.1/knuth-lfib.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/knuth-lfib.c	2018-12-24 14:43:35.856916047 +0000
+@@ -116,7 +116,7 @@
+ knuth_lfib_get(struct knuth_lfib_ctx *ctx)
+ {
+   uint32_t value;
+-//  assert(ctx->index < KK);
++  assert(ctx->index < KK);
+   
+   value = ctx->x[ctx->index];
+   ctx->x[ctx->index] -= ctx->x[(ctx->index + KK - LL) % KK];
+diff -urN nettle-3.4.1/md2.c nettle-3.4.1.orig/md2.c
+--- nettle-3.4.1/md2.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/md2.c	2018-12-24 14:43:35.836911865 +0000
+@@ -127,7 +127,7 @@
+ {
+   unsigned left;
+   
+-//  assert(length <= MD2_DIGEST_SIZE);
++  assert(length <= MD2_DIGEST_SIZE);
+ 
+   left = MD2_BLOCK_SIZE - ctx->index;
+   memset(ctx->block + ctx->index, left, left);
+diff -urN nettle-3.4.1/md4.c nettle-3.4.1.orig/md4.c
+--- nettle-3.4.1/md4.c	2018-12-24 14:44:09.322596005 +0000
++++ nettle-3.4.1.orig/md4.c	2018-12-24 14:43:35.856916047 +0000
+@@ -90,7 +90,7 @@
+   uint32_t data[MD4_DATA_LENGTH];
+   unsigned i;
+ 
+-//  assert(length <= MD4_DIGEST_SIZE);
++  assert(length <= MD4_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 8, md4_compress);
+   for (i = 0; i < MD4_DATA_LENGTH - 2; i++)
+diff -urN nettle-3.4.1/md5.c nettle-3.4.1.orig/md5.c
+--- nettle-3.4.1/md5.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/md5.c	2018-12-24 14:43:35.856916047 +0000
+@@ -78,7 +78,7 @@
+ {
+   uint64_t bit_count;
+   
+-//  assert(length <= MD5_DIGEST_SIZE);
++  assert(length <= MD5_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 8, COMPRESS);
+ 
+diff -urN nettle-3.4.1/memxor3.c nettle-3.4.1.orig/memxor3.c
+--- nettle-3.4.1/memxor3.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/memxor3.c	2018-12-24 14:43:35.844913538 +0000
+@@ -74,7 +74,7 @@
+ 
+   word_t s0, s1;
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+ 
+   shl = CHAR_BIT * offset;
+   shr = CHAR_BIT * (sizeof(word_t) - offset);
+@@ -104,7 +104,7 @@
+       s1 = b_word[n];
+       dst[n] = a[n] ^ MERGE(s1, shl, s0, shr);
+     }
+-//  assert (n == 1);
++  assert (n == 1);
+   /* Read low wordsize - offset bytes */
+   READ_PARTIAL (s0, b, sizeof(word_t) - offset);
+ #ifndef WORDS_BIGENDIAN
+@@ -125,7 +125,7 @@
+ 
+   word_t s0, s1, t;
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+ 
+   shl = CHAR_BIT * offset;
+   shr = CHAR_BIT * (sizeof(word_t) - offset);
+@@ -158,7 +158,7 @@
+       s1 = a_word[n] ^ b_word[n];
+       dst[n] = MERGE(s1, shl, s0, shr);
+     }
+-//  assert (n == 1);
++  assert (n == 1);
+   /* Read low wordsize - offset bytes */
+   READ_PARTIAL (s0, a, sizeof(word_t) - offset);
+   READ_PARTIAL (t,  b, sizeof(word_t) - offset);
+@@ -218,7 +218,7 @@
+       a1 = a_word[n]; b1 = b_word[n];
+       dst[n] = MERGE(a1, al, a0, ar) ^ MERGE(b1, bl, b0, br);
+     }
+-//  assert (n == 1);
++  assert (n == 1);
+   /* Read low wordsize - offset bytes */
+   READ_PARTIAL (a0, a, sizeof(word_t) - a_offset);
+   READ_PARTIAL (b0, b, sizeof(word_t) - b_offset);
+diff -urN nettle-3.4.1/memxor.c nettle-3.4.1.orig/memxor.c
+--- nettle-3.4.1/memxor.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/memxor.c	2018-12-24 14:43:35.840912702 +0000
+@@ -77,7 +77,7 @@
+   unsigned offset = ALIGN_OFFSET (src);
+   word_t s0, s1;
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+   shl = CHAR_BIT * offset;
+   shr = CHAR_BIT * (sizeof(word_t) - offset);
+ 
+@@ -99,7 +99,7 @@
+       dst[n] ^= MERGE (s1, shl, s0, shr);
+     }
+ 
+-//  assert (n & 1);
++  assert (n & 1);
+   while (n > 2)
+     {
+       n -= 2;
+@@ -108,7 +108,7 @@
+       s1 = src_word[n]; /* FIXME: Overread on last iteration */
+       dst[n] ^= MERGE(s1, shl, s0, shr);
+     }
+-//  assert (n == 1);
++  assert (n == 1);
+   /* Read low wordsize - offset bytes */
+   READ_PARTIAL (s0, src, sizeof(word_t) - offset);
+ #ifndef WORDS_BIGENDIAN
+diff -urN nettle-3.4.1/mini-gmp.c nettle-3.4.1.orig/mini-gmp.c
+--- nettle-3.4.1/mini-gmp.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/mini-gmp.c	2018-12-24 14:43:35.856916047 +0000
+@@ -260,7 +260,7 @@
+ {
+   void *p;
+ 
+-//  assert (size > 0);
++  assert (size > 0);
+ 
+   p = malloc (size);
+   if (!p)
+@@ -336,7 +336,7 @@
+ static mp_ptr
+ gmp_xrealloc_limbs (mp_ptr old, mp_size_t size)
+ {
+-//  assert (size > 0);
++  assert (size > 0);
+   return (mp_ptr) (*gmp_reallocate_func) (old, 0, size * sizeof (mp_limb_t));
+ }
+ 
+@@ -404,7 +404,7 @@
+ {
+   mp_size_t i;
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+   i = 0;
+   do
+     {
+@@ -442,7 +442,7 @@
+ {
+   mp_limb_t cy;
+ 
+-//  assert (an >= bn);
++  assert (an >= bn);
+ 
+   cy = mpn_add_n (rp, ap, bp, bn);
+   if (an > bn)
+@@ -455,7 +455,7 @@
+ {
+   mp_size_t i;
+ 
+-//  assert (n > 0);
++  assert (n > 0);
+ 
+   i = 0;
+   do
+@@ -494,7 +494,7 @@
+ {
+   mp_limb_t cy;
+ 
+-//  assert (an >= bn);
++  assert (an >= bn);
+ 
+   cy = mpn_sub_n (rp, ap, bp, bn);
+   if (an > bn)
+@@ -507,7 +507,7 @@
+ {
+   mp_limb_t ul, cl, hpl, lpl;
+ 
+-//  assert (n >= 1);
++  assert (n >= 1);
+ 
+   cl = 0;
+   do
+@@ -530,7 +530,7 @@
+ {
+   mp_limb_t ul, cl, hpl, lpl, rl;
+ 
+-//  assert (n >= 1);
++  assert (n >= 1);
+ 
+   cl = 0;
+   do
+@@ -556,7 +556,7 @@
+ {
+   mp_limb_t ul, cl, hpl, lpl, rl;
+ 
+-//  assert (n >= 1);
++  assert (n >= 1);
+ 
+   cl = 0;
+   do
+@@ -580,10 +580,10 @@
+ mp_limb_t
+ mpn_mul (mp_ptr rp, mp_srcptr up, mp_size_t un, mp_srcptr vp, mp_size_t vn)
+ {
+-//  assert (un >= vn);
+-//  assert (vn >= 1);
+-//  assert (!GMP_MPN_OVERLAP_P(rp, un + vn, up, un));
+-//  assert (!GMP_MPN_OVERLAP_P(rp, un + vn, vp, vn));
++  assert (un >= vn);
++  assert (vn >= 1);
++  assert (!GMP_MPN_OVERLAP_P(rp, un + vn, up, un));
++  assert (!GMP_MPN_OVERLAP_P(rp, un + vn, vp, vn));
+ 
+   /* We first multiply by the low order limb. This result can be
+      stored, not added, to rp. We also avoid a loop for zeroing this
+@@ -621,9 +621,9 @@
+   unsigned int tnc;
+   mp_limb_t retval;
+ 
+-//  assert (n >= 1);
+-//  assert (cnt >= 1);
+-//  assert (cnt < GMP_LIMB_BITS);
++  assert (n >= 1);
++  assert (cnt >= 1);
++  assert (cnt < GMP_LIMB_BITS);
+ 
+   up += n;
+   rp += n;
+@@ -651,9 +651,9 @@
+   unsigned int tnc;
+   mp_limb_t retval;
+ 
+-//  assert (n >= 1);
+-//  assert (cnt >= 1);
+-//  assert (cnt < GMP_LIMB_BITS);
++  assert (n >= 1);
++  assert (cnt >= 1);
++  assert (cnt < GMP_LIMB_BITS);
+ 
+   tnc = GMP_LIMB_BITS - cnt;
+   high_limb = *up++;
+@@ -677,8 +677,8 @@
+ {
+   unsigned cnt;
+ 
+-//  assert (ux == 0 || ux == GMP_LIMB_MAX);
+-//  assert (0 <= i && i <= un );
++  assert (ux == 0 || ux == GMP_LIMB_MAX);
++  assert (0 <= i && i <= un );
+ 
+   while (limb == 0)
+     {
+@@ -746,7 +746,7 @@
+   mp_limb_t r, p, m, ql;
+   unsigned ul, uh, qh;
+ 
+-//  assert (u1 >= GMP_LIMB_HIGHBIT);
++  assert (u1 >= GMP_LIMB_HIGHBIT);
+ 
+   /* For notation, let b denote the half-limb base, so that B = b^2.
+      Split u1 = b uh + ul. */
+@@ -861,7 +861,7 @@
+ {
+   unsigned shift;
+ 
+-//  assert (d > 0);
++  assert (d > 0);
+   gmp_clz (shift, d);
+   inv->shift = shift;
+   inv->d1 = d << shift;
+@@ -874,7 +874,7 @@
+ {
+   unsigned shift;
+ 
+-//  assert (d1 > 0);
++  assert (d1 > 0);
+   gmp_clz (shift, d1);
+   inv->shift = shift;
+   if (shift > 0)
+@@ -891,7 +891,7 @@
+ mpn_div_qr_invert (struct gmp_div_inverse *inv,
+ 		   mp_srcptr dp, mp_size_t dn)
+ {
+-//  assert (dn > 0);
++  assert (dn > 0);
+ 
+   if (dn == 1)
+     mpn_div_qr_1_invert (inv, dp[0]);
+@@ -904,7 +904,7 @@
+ 
+       d1 = dp[dn-1];
+       d0 = dp[dn-2];
+-//      assert (d1 > 0);
++      assert (d1 > 0);
+       gmp_clz (shift, d1);
+       inv->shift = shift;
+       if (shift > 0)
+@@ -956,7 +956,7 @@
+ static mp_limb_t
+ mpn_div_qr_1 (mp_ptr qp, mp_srcptr np, mp_size_t nn, mp_limb_t d)
+ {
+-//  assert (d > 0);
++  assert (d > 0);
+ 
+   /* Special case for powers of two. */
+   if ((d & (d-1)) == 0)
+@@ -992,7 +992,7 @@
+   mp_limb_t d1, d0, di, r1, r0;
+   mp_ptr tp;
+ 
+-//  assert (nn >= 2);
++  assert (nn >= 2);
+   shift = inv->shift;
+   d1 = inv->d1;
+   d0 = inv->d0;
+@@ -1023,7 +1023,7 @@
+ 
+   if (shift > 0)
+     {
+-//      assert ((r0 << (GMP_LIMB_BITS - shift)) == 0);
++      assert ((r0 << (GMP_LIMB_BITS - shift)) == 0);
+       r0 = (r0 >> shift) | (r1 << (GMP_LIMB_BITS - shift));
+       r1 >>= shift;
+ 
+@@ -1040,7 +1040,7 @@
+ 	      mp_limb_t d1, mp_limb_t d0)
+ {
+   struct gmp_div_inverse inv;
+-//  assert (nn >= 2);
++  assert (nn >= 2);
+ 
+   mpn_div_qr_2_invert (&inv, d1, d0);
+   mpn_div_qr_2_preinv (qp, rp, np, nn, &inv);
+@@ -1059,13 +1059,13 @@
+   mp_limb_t cy, cy1;
+   mp_limb_t q;
+ 
+-//  assert (dn > 2);
+-//  assert (nn >= dn);
++  assert (dn > 2);
++  assert (nn >= dn);
+ 
+   d1 = dp[dn - 1];
+   d0 = dp[dn - 2];
+ 
+-//  assert ((d1 & GMP_LIMB_HIGHBIT) != 0);
++  assert ((d1 & GMP_LIMB_HIGHBIT) != 0);
+   /* Iteration variable is the index of the q limb.
+    *
+    * We divide <n1, np[dn-1+i], np[dn-2+i], np[dn-3+i],..., np[i]>
+@@ -1115,8 +1115,8 @@
+ 		   mp_srcptr dp, mp_size_t dn,
+ 		   const struct gmp_div_inverse *inv)
+ {
+-//  assert (dn > 0);
+-//  assert (nn >= dn);
++  assert (dn > 0);
++  assert (nn >= dn);
+ 
+   if (dn == 1)
+     np[0] = mpn_div_qr_1_preinv (qp, np, nn, inv);
+@@ -1127,9 +1127,9 @@
+       mp_limb_t nh;
+       unsigned shift;
+ 
+-//      assert (inv->d1 == dp[dn-1]);
+-//      assert (inv->d0 == dp[dn-2]);
+-//      assert ((inv->d1 & GMP_LIMB_HIGHBIT) != 0);
++      assert (inv->d1 == dp[dn-1]);
++      assert (inv->d0 == dp[dn-2]);
++      assert ((inv->d1 & GMP_LIMB_HIGHBIT) != 0);
+ 
+       shift = inv->shift;
+       if (shift > 0)
+@@ -1150,8 +1150,8 @@
+   struct gmp_div_inverse inv;
+   mp_ptr tp = NULL;
+ 
+-//  assert (dn > 0);
+-//  assert (nn >= dn);
++  assert (dn > 0);
++  assert (nn >= dn);
+ 
+   mpn_div_qr_invert (&inv, dp, dn);
+   if (dn > 2 && inv.shift > 0)
+@@ -1212,7 +1212,7 @@
+ {
+   unsigned shift;
+ 
+-//  assert (u > 0);
++  assert (u > 0);
+   gmp_clz (shift, u);
+   return GMP_LIMB_BITS - shift;
+ }
+@@ -1261,7 +1261,7 @@
+       l = w << binv->shift;
+ 
+       gmp_udiv_qrnnd_preinv (w, r, h, l, binv->d1, binv->di);
+-//      assert ( (r << (GMP_LIMB_BITS - binv->shift)) == 0);
++      assert ( (r << (GMP_LIMB_BITS - binv->shift)) == 0);
+       r >>= binv->shift;
+ 
+       sp[i] = r;
+@@ -1318,8 +1318,8 @@
+ {
+   unsigned bits;
+ 
+-//  assert (un > 0);
+-//  assert (up[un-1] > 0);
++  assert (un > 0);
++  assert (up[un-1] > 0);
+ 
+   bits = mpn_base_power_of_two_p (base);
+   if (bits)
+@@ -1375,7 +1375,7 @@
+   unsigned k;
+   size_t j;
+ 
+-//  assert (sn > 0);
++  assert (sn > 0);
+ 
+   k = 1 + (sn - 1) % info->exp;
+ 
+@@ -1399,7 +1399,7 @@
+       if (cy > 0)
+ 	rp[rn++] = cy;
+     }
+-//  assert (j == sn);
++  assert (j == sn);
+ 
+   return rn;
+ }
+@@ -1610,7 +1610,7 @@
+ mp_ptr
+ mpz_limbs_modify (mpz_t x, mp_size_t n)
+ {
+-//  assert (n > 0);
++  assert (n > 0);
+   return MPZ_REALLOC (x, n);
+ }
+ 
+@@ -1675,7 +1675,7 @@
+ 
+   f = (mp_limb_t) x;
+   x -= f;
+-//  assert (x < 1.0);
++  assert (x < 1.0);
+   i = rn-1;
+   rp[i] = f;
+   while (--i >= 0)
+@@ -1683,7 +1683,7 @@
+       x = B * x;
+       f = (mp_limb_t) x;
+       x -= f;
+-//      assert (x < 1.0);
++      assert (x < 1.0);
+       rp[i] = f;
+     }
+ 
+@@ -2417,7 +2417,7 @@
+       return;
+     }
+   rn = (bit_index + GMP_LIMB_BITS - 1) / GMP_LIMB_BITS;
+-//  assert (rn > 0);
++  assert (rn > 0);
+ 
+   rp = MPZ_REALLOC (r, rn);
+   un = GMP_ABS (us);
+@@ -2564,7 +2564,7 @@
+     qp = NULL;
+ 
+   rl = mpn_div_qr_1 (qp, n->_mp_d, qn, d);
+-//  assert (rl < d);
++  assert (rl < d);
+ 
+   rs = rl > 0;
+   rs = (ns < 0) ? -rs : rs;
+@@ -2586,7 +2586,7 @@
+   if (q)
+     {
+       qn -= (qp[qn-1] == 0);
+-//      assert (qn == 0 || qp[qn-1] > 0);
++      assert (qn == 0 || qp[qn-1] > 0);
+ 
+       q->_mp_size = (ns < 0) ? - qn : qn;
+     }
+@@ -2689,7 +2689,7 @@
+ {
+   unsigned shift;
+ 
+-//  assert ( (u | v) > 0);
++  assert ( (u | v) > 0);
+ 
+   if (u == 0)
+     return v;
+@@ -2755,7 +2755,7 @@
+ {
+   mp_bitcnt_t shift;
+ 
+-//  assert (r->_mp_size > 0);
++  assert (r->_mp_size > 0);
+   /* Count trailing zeros, equivalent to mpn_scan1, because we know that there is a 1 */
+   shift = mpn_common_scan (r->_mp_d[0], 0, r->_mp_d, 0, 0);
+   mpz_tdiv_q_2exp (r, r, shift);
+@@ -3321,8 +3321,8 @@
+ {
+   mpz_t t;
+ 
+-//  assert (n > 0);
+-//  assert (p [n-1] != 0);
++  assert (n > 0);
++  assert (p [n-1] != 0);
+   return mpz_root (NULL, mpz_roinit_n (t, p, n), 2);
+ }
+ 
+@@ -3332,14 +3332,14 @@
+   mpz_t s, r, u;
+   mp_size_t res;
+ 
+-//  assert (n > 0);
+-//  assert (p [n-1] != 0);
++  assert (n > 0);
++  assert (p [n-1] != 0);
+ 
+   mpz_init (r);
+   mpz_init (s);
+   mpz_rootrem (s, r, mpz_roinit_n (u, p, n), 2);
+ 
+-//  assert (s->_mp_size == (n+1)/2);
++  assert (s->_mp_size == (n+1)/2);
+   mpn_copyd (sp, s->_mp_d, s->_mp_size);
+   mpz_clear (s);
+   res = r->_mp_size;
+@@ -3385,7 +3385,7 @@
+ gmp_millerrabin (const mpz_t n, const mpz_t nm1, mpz_t y,
+ 		 const mpz_t q, mp_bitcnt_t k)
+ {
+-//  assert (k > 0);
++  assert (k > 0);
+ 
+   /* Caller must initialize y to the base. */
+   mpz_powm (y, y, q, n);
+@@ -3430,7 +3430,7 @@
+     return (mpz_cmpabs_ui (n, 2) == 0) ? 2 : 0;
+ 
+   /* Above test excludes n == 0 */
+-//  assert (n->_mp_size != 0);
++  assert (n->_mp_size != 0);
+ 
+   if (mpz_cmpabs_ui (n, 64) < 0)
+     return (GMP_PRIME_MASK >> (n->_mp_d[0] >> 1)) & 2;
+@@ -3463,7 +3463,7 @@
+ 	{
+ 	  /* Don't try any further bases. This "early" break does not affect
+ 	     the result for any reasonable reps value (<=5000 was tested) */
+-//	  assert (j >= 30);
++	  assert (j >= 30);
+ 	  break;
+ 	}
+       is_prime = gmp_millerrabin (n, nm1, y, q, k);
+@@ -3587,7 +3587,7 @@
+   limb_index = bit_index / GMP_LIMB_BITS;
+   bit = (mp_limb_t) 1 << (bit_index % GMP_LIMB_BITS);
+ 
+-//  assert (limb_index < dn);
++  assert (limb_index < dn);
+ 
+   gmp_assert_nocarry (mpn_sub_1 (dp + limb_index, dp + limb_index,
+ 				 dn - limb_index, bit));
+@@ -3688,7 +3688,7 @@
+       rp[i] = rl;
+     }
+   while (++i < vn);
+-//  assert (vc == 0);
++  assert (vc == 0);
+ 
+   for (; i < rn; i++)
+     {
+@@ -3761,7 +3761,7 @@
+       rp[i] = rl;
+     }
+   while (++i < vn);
+-//  assert (vc == 0);
++  assert (vc == 0);
+ 
+   for (; i < rn; i++)
+     {
+@@ -3830,7 +3830,7 @@
+       rp[i] = rl;
+     }
+   while (++i < vn);
+-//  assert (vc == 0);
++  assert (vc == 0);
+ 
+   for (; i < un; i++)
+     {
+@@ -3908,7 +3908,7 @@
+   comp = - (uc = vc = (un < 0));
+   if (uc)
+     {
+-//      assert (vn < 0);
++      assert (vn < 0);
+       un = -un;
+       vn = -vn;
+     }
+@@ -3929,7 +3929,7 @@
+ 
+       c += gmp_popcount_limb (ul ^ vl);
+     }
+-//  assert (vc == 0);
++  assert (vc == 0);
+ 
+   for (; i < un; i++)
+     {
+@@ -4020,8 +4020,8 @@
+   struct gmp_div_inverse bi;
+   size_t ndigits;
+ 
+-//  assert (base >= 2);
+-//  assert (base <= 62);
++  assert (base >= 2);
++  assert (base <= 62);
+ 
+   un = GMP_ABS (u->_mp_size);
+   if (un == 0)
+@@ -4141,7 +4141,7 @@
+   int sign;
+   unsigned char *dp;
+ 
+-//  assert (base == 0 || (base >= 2 && base <= 62));
++  assert (base == 0 || (base >= 2 && base <= 62));
+ 
+   while (isspace( (unsigned char) *sp))
+     sp++;
+@@ -4225,10 +4225,10 @@
+       rp = MPZ_REALLOC (r, alloc);
+       rn = mpn_set_str_other (rp, dp, dn, base, &info);
+       /* Normalization, needed for all-zero input. */
+-//      assert (rn > 0);
++      assert (rn > 0);
+       rn -= rp[rn-1] == 0;
+     }
+-//  assert (rn <= alloc);
++  assert (rn <= alloc);
+   gmp_free (dp);
+ 
+   r->_mp_size = sign ? - rn : rn;
+@@ -4286,8 +4286,8 @@
+   if (nails != 0)
+     gmp_die ("mpz_import: Nails not supported.");
+ 
+-//  assert (order == 1 || order == -1);
+-//  assert (endian >= -1 && endian <= 1);
++  assert (order == 1 || order == -1);
++  assert (endian >= -1 && endian <= 1);
+ 
+   if (endian == 0)
+     endian = gmp_detect_endian ();
+@@ -4325,7 +4325,7 @@
+ 	    }
+ 	}
+     }
+-//  assert (i + (bytes > 0) == rn);
++  assert (i + (bytes > 0) == rn);
+   if (limb != 0)
+     rp[i++] = limb;
+   else
+@@ -4344,9 +4344,9 @@
+   if (nails != 0)
+     gmp_die ("mpz_import: Nails not supported.");
+ 
+-//  assert (order == 1 || order == -1);
+-//  assert (endian >= -1 && endian <= 1);
+-//  assert (size > 0 || u->_mp_size == 0);
++  assert (order == 1 || order == -1);
++  assert (endian >= -1 && endian <= 1);
++  assert (size > 0 || u->_mp_size == 0);
+ 
+   un = u->_mp_size;
+   count = 0;
+@@ -4366,7 +4366,7 @@
+ 
+       /* Count bytes in top limb. */
+       limb = u->_mp_d[un-1];
+-//      assert (limb != 0);
++      assert (limb != 0);
+ 
+       k = 0;
+       do {
+@@ -4413,8 +4413,8 @@
+ 	      bytes--;
+ 	    }
+ 	}
+-//      assert (i == un);
+-//      assert (k == count);
++      assert (i == un);
++      assert (k == count);
+     }
+ 
+   if (countp)
+diff -urN nettle-3.4.1/pbkdf2.c nettle-3.4.1.orig/pbkdf2.c
+--- nettle-3.4.1/pbkdf2.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pbkdf2.c	2018-12-24 14:43:35.852915211 +0000
+@@ -58,7 +58,7 @@
+   
+   unsigned i;
+ 
+-//  assert (iterations > 0);
++  assert (iterations > 0);
+ 
+   if (length == 0)
+     return;
+diff -urN nettle-3.4.1/pgp-encode.c nettle-3.4.1.orig/pgp-encode.c
+--- nettle-3.4.1/pgp-encode.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pgp-encode.c	2018-12-24 14:43:35.844913538 +0000
+@@ -134,7 +134,7 @@
+ pgp_put_header(struct nettle_buffer *buffer,
+ 	       unsigned tag, unsigned length)
+ {
+-//  assert(tag < 0x40);
++  assert(tag < 0x40);
+ 
+   return (NETTLE_BUFFER_PUTC(buffer, 0xC0 | tag)
+ 	  && pgp_put_length(buffer, length));  
+@@ -153,13 +153,13 @@
+     {
+     case 1:
+       length = buffer->size - (start + 2);
+-//      assert(length < PGP_LENGTH_TWO_OCTETS);
++      assert(length < PGP_LENGTH_TWO_OCTETS);
+       buffer->contents[start + 1] = length;
+       break;
+     case 2:
+       length = buffer->size - (start + 3);
+-//      assert(length < PGP_LENGTH_FOUR_OCTETS
+-//	     && length >= PGP_LENGTH_TWO_OCTETS);
++      assert(length < PGP_LENGTH_FOUR_OCTETS
++	     && length >= PGP_LENGTH_TWO_OCTETS);
+       WRITE_UINT16(buffer->contents + start + 1, length + LENGTH_TWO_OFFSET);
+       break;
+     case 4:
+@@ -202,8 +202,8 @@
+ {
+   unsigned length;
+   
+-//  assert(start >= 2);
+-//  assert(start <= buffer->size);
++  assert(start >= 2);
++  assert(start <= buffer->size);
+ 
+   length = buffer->size - start;
+   WRITE_UINT32(buffer->contents + start - 2, length);
+@@ -238,7 +238,7 @@
+ 	 && pgp_put_mpi(buffer, pub->e)) )
+     return 0;
+ 
+-//  assert(buffer->size == start + length);
++  assert(buffer->size == start + length);
+ 
+   return 1;
+ }
+@@ -334,7 +334,7 @@
+ 	    crc ^= CRC24_POLY;
+ 	}
+     }
+-//  assert(crc < 0x1000000);
++  assert(crc < 0x1000000);
+   return crc;
+ }
+ 
+@@ -378,7 +378,7 @@
+ 	return 0;
+ 
+       done = base64_encode_update(&ctx, p, BINARY_PER_LINE, data);
+-//      assert(done <= TEXT_PER_LINE);
++      assert(done <= TEXT_PER_LINE);
+ 
+       /* FIXME: Create some official way to do this */
+       buffer->size -= (TEXT_PER_LINE - done);
+diff -urN nettle-3.4.1/pkcs1.c nettle-3.4.1.orig/pkcs1.c
+--- nettle-3.4.1/pkcs1.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pkcs1.c	2018-12-24 14:43:35.852915211 +0000
+@@ -66,7 +66,7 @@
+   buffer[1] = 1;
+   buffer[j-1] = 0;
+ 
+-//  assert(j >= 11);
++  assert(j >= 11);
+   memset(buffer + 2, 0xff, j - 3);
+ 
+   return buffer + j + id_size;
+diff -urN nettle-3.4.1/pkcs1-encrypt.c nettle-3.4.1.orig/pkcs1-encrypt.c
+--- nettle-3.4.1/pkcs1-encrypt.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pkcs1-encrypt.c	2018-12-24 14:43:35.848914374 +0000
+@@ -69,7 +69,7 @@
+ 
+   /* At least 8 octets of random padding */
+   padding = key_size - length - 3;
+-//  assert(padding >= 8);
++  assert(padding >= 8);
+   
+   TMP_GMP_ALLOC(em, key_size - 1);
+   em[0] = 2;
+diff -urN nettle-3.4.1/pkcs1-sec-decrypt.c nettle-3.4.1.orig/pkcs1-sec-decrypt.c
+--- nettle-3.4.1/pkcs1-sec-decrypt.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pkcs1-sec-decrypt.c	2018-12-24 14:43:35.852915211 +0000
+@@ -64,7 +64,7 @@
+   volatile int ok;
+   size_t i, t;
+ 
+-//  assert (padded_message_length >= length);
++  assert (padded_message_length >= length);
+ 
+   t = padded_message_length - length - 1;
+ 
+diff -urN nettle-3.4.1/poly1305-aes.c nettle-3.4.1.orig/poly1305-aes.c
+--- nettle-3.4.1/poly1305-aes.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/poly1305-aes.c	2018-12-24 14:43:35.852915211 +0000
+@@ -72,7 +72,7 @@
+   /* final bytes */
+   if (ctx->index > 0)
+     {
+-//      assert (ctx->index < POLY1305_BLOCK_SIZE);
++      assert (ctx->index < POLY1305_BLOCK_SIZE);
+ 
+       ctx->block[ctx->index] = 1;
+       memset (ctx->block + ctx->index + 1,
+diff -urN nettle-3.4.1/pss.c nettle-3.4.1.orig/pss.c
+--- nettle-3.4.1/pss.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/pss.c	2018-12-24 14:43:35.856916047 +0000
+@@ -158,7 +158,7 @@
+   /* The leftmost 8 * emLen - emBits bits of the leftmost octet of EM
+    * must all equal to zero. Always true here, thanks to the above
+    * check on the bit size of m. */
+-//  assert((*em & ~pss_masks[(8 * key_size - bits)]) == 0);
++  assert((*em & ~pss_masks[(8 * key_size - bits)]) == 0);
+ 
+   /* Compute dbMask.  */
+   hash->init(state);
+diff -urN nettle-3.4.1/ripemd160.c nettle-3.4.1.orig/ripemd160.c
+--- nettle-3.4.1/ripemd160.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/ripemd160.c	2018-12-24 14:43:35.856916047 +0000
+@@ -186,7 +186,7 @@
+ {
+   uint64_t bit_count;
+ 
+-//  assert(length <= RIPEMD160_DIGEST_SIZE);
++  assert(length <= RIPEMD160_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 8, COMPRESS);
+ 
+diff -urN nettle-3.4.1/rsa-keygen.c nettle-3.4.1.orig/rsa-keygen.c
+--- nettle-3.4.1/rsa-keygen.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/rsa-keygen.c	2018-12-24 14:43:35.840912702 +0000
+@@ -146,7 +146,7 @@
+       /* Now we have the primes. Is the product of the right size? */
+       mpz_mul(pub->n, key->p, key->q);
+ 
+-//      assert (mpz_sizeinbase(pub->n, 2) == n_size);
++      assert (mpz_sizeinbase(pub->n, 2) == n_size);
+ 
+       if (progress)
+ 	progress(progress_ctx, '\n');
+@@ -191,7 +191,7 @@
+       /* Must always succeed, as we already that e
+        * doesn't have any common factor with p-1 or q-1. */
+       int res = mpz_invert(key->d, pub->e, phi);
+-//      assert(res);
++      assert(res);
+     }
+ 
+   /* Done! Almost, we must compute the auxillary private values. */
+@@ -204,7 +204,7 @@
+   /* c was computed earlier */
+ 
+   pub->size = key->size = (n_size + 7) / 8;
+-//  assert(pub->size >= RSA_MINIMUM_N_OCTETS);
++  assert(pub->size >= RSA_MINIMUM_N_OCTETS);
+   
+   mpz_clear(p1); mpz_clear(q1); mpz_clear(phi); mpz_clear(tmp);
+ 
+diff -urN nettle-3.4.1/rsa-sec-compute-root.c nettle-3.4.1.orig/rsa-sec-compute-root.c
+--- nettle-3.4.1/rsa-sec-compute-root.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/rsa-sec-compute-root.c	2018-12-24 14:43:35.840912702 +0000
+@@ -84,7 +84,7 @@
+ 	     const mp_limb_t *mp, mp_size_t mn,
+ 	     mp_limb_t *scratch)
+ {
+-//  assert (an + bn >= mn);
++  assert (an + bn >= mn);
+   sec_mul (rp, ap, an, bp, bn, scratch);
+   mpn_sec_div_r (rp, an + bn, mp, mn, scratch);
+ }
+@@ -105,8 +105,8 @@
+ 	  const mp_limb_t *ep, mp_size_t en,
+ 	  const mp_limb_t *mp, mp_size_t mn, mp_limb_t *scratch)
+ {
+-//  assert (bn >= mn);
+-//  assert (en <= mn);
++  assert (bn >= mn);
++  assert (en <= mn);
+   mpn_copyi (scratch, bp, bn);
+   mpn_sec_div_r (scratch, bn, mp, mn, scratch + bn);
+   mpn_sec_powm (rp, scratch, mn, ep, en * GMP_NUMB_BITS, mp, mn,
+@@ -165,11 +165,11 @@
+   mp_limb_t *scratch_out = r_mod_q + qn;
+   mp_limb_t cy;
+ 
+-//  assert (pn <= nn);
+-//  assert (qn <= nn);
+-//  assert (an <= pn);
+-//  assert (bn <= qn);
+-//  assert (cn <= pn);
++  assert (pn <= nn);
++  assert (qn <= nn);
++  assert (an <= pn);
++  assert (bn <= qn);
++  assert (cn <= pn);
+ 
+   /* Compute r_mod_p = m^d % p = (m%p)^a % p */
+   sec_powm (r_mod_p, mp, nn, mpz_limbs_read (key->a), an, pp, pn, scratch_out);
+diff -urN nettle-3.4.1/rsa-sign.c nettle-3.4.1.orig/rsa-sign.c
+--- nettle-3.4.1/rsa-sign.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/rsa-sign.c	2018-12-24 14:43:35.844913538 +0000
+@@ -166,7 +166,7 @@
+   size_t key_size;
+ 
+   key_size = NETTLE_OCTET_SIZE_TO_LIMB_SIZE(key->size);
+-//  assert(mpz_size (m) <= key_size);
++  assert(mpz_size (m) <= key_size);
+ 
+   /* we need a copy because m can be shorter than key_size,
+    * but _rsa_sec_compute_root expect all inputs to be
+diff -urN nettle-3.4.1/rsa-sign-tr.c nettle-3.4.1.orig/rsa-sign-tr.c
+--- nettle-3.4.1/rsa-sign-tr.c	2018-12-24 14:44:09.326597318 +0000
++++ nettle-3.4.1.orig/rsa-sign-tr.c	2018-12-24 14:43:35.856916047 +0000
+@@ -319,8 +319,8 @@
+       return 0;
+     }
+ 
+-//  assert(mpz_size(pub->n) == key_limb_size);
+-//  assert(mn <= key_limb_size);
++  assert(mpz_size(pub->n) == key_limb_size);
++  assert(mn <= key_limb_size);
+ 
+   TMP_GMP_ALLOC (c, key_limb_size);
+   TMP_GMP_ALLOC (ri, key_limb_size);
+diff -urN nettle-3.4.1/salsa20-core-internal.c nettle-3.4.1.orig/salsa20-core-internal.c
+--- nettle-3.4.1/salsa20-core-internal.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/salsa20-core-internal.c	2018-12-24 14:43:35.852915211 +0000
+@@ -98,7 +98,7 @@
+   uint32_t x[_SALSA20_INPUT_LENGTH];
+   unsigned i;
+ 
+-//  assert ( (rounds & 1) == 0);
++  assert ( (rounds & 1) == 0);
+ 
+   memcpy (x, src, sizeof(x));
+   for (i = 0; i < rounds;i += 2)
+diff -urN nettle-3.4.1/sec-tabselect.c nettle-3.4.1.orig/sec-tabselect.c
+--- nettle-3.4.1/sec-tabselect.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sec-tabselect.c	2018-12-24 14:43:35.852915211 +0000
+@@ -51,7 +51,7 @@
+   const mp_limb_t *p;
+   mp_size_t i;
+   
+-//  assert (k < tn);
++  assert (k < tn);
+   mpn_zero (rp, rn);
+   for (p = table; p < end; p += rn, k--)
+     {
+diff -urN nettle-3.4.1/serpent-decrypt.c nettle-3.4.1.orig/serpent-decrypt.c
+--- nettle-3.4.1/serpent-decrypt.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/serpent-decrypt.c	2018-12-24 14:43:35.856916047 +0000
+@@ -471,7 +471,7 @@
+ serpent_decrypt (const struct serpent_ctx *ctx,
+ 		 size_t length, uint8_t * dst, const uint8_t * src)
+ {
+-//  assert( !(length % SERPENT_BLOCK_SIZE));
++  assert( !(length % SERPENT_BLOCK_SIZE));
+ 
+ #if HAVE_NATIVE_64_BIT
+   if (length & SERPENT_BLOCK_SIZE)
+diff -urN nettle-3.4.1/serpent-encrypt.c nettle-3.4.1.orig/serpent-encrypt.c
+--- nettle-3.4.1/serpent-encrypt.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/serpent-encrypt.c	2018-12-24 14:43:35.852915211 +0000
+@@ -444,7 +444,7 @@
+ serpent_encrypt (const struct serpent_ctx *ctx,
+ 		 size_t length, uint8_t * dst, const uint8_t * src)
+ {
+-//  assert( !(length % SERPENT_BLOCK_SIZE));
++  assert( !(length % SERPENT_BLOCK_SIZE));
+   
+ #if HAVE_NATIVE_64_BIT
+   if (length & SERPENT_BLOCK_SIZE)
+diff -urN nettle-3.4.1/serpent-set-key.c nettle-3.4.1.orig/serpent-set-key.c
+--- nettle-3.4.1/serpent-set-key.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/serpent-set-key.c	2018-12-24 14:43:35.840912702 +0000
+@@ -300,7 +300,7 @@
+ {
+   unsigned int i;
+ 
+-//  assert (key_length <= SERPENT_MAX_KEY_SIZE);
++  assert (key_length <= SERPENT_MAX_KEY_SIZE);
+   
+   for (i = 0; key_length >= 4; key_length -=4, key += 4)
+     w[i++] = LE_READ_UINT32(key);
+@@ -355,7 +355,7 @@
+       KS(keys, 5, w, 0, k);
+       KS(keys, 4, w, 4, k);
+     }
+-//  assert (keys == ctx->keys + 33);
++  assert (keys == ctx->keys + 33);
+ }
+ 
+ void
+diff -urN nettle-3.4.1/sexp.c nettle-3.4.1.orig/sexp.c
+--- nettle-3.4.1/sexp.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sexp.c	2018-12-24 14:43:35.840912702 +0000
+@@ -228,7 +228,7 @@
+ sexp_iterator_exit_lists(struct sexp_iterator *iterator,
+ 			 unsigned level)
+ {
+-//  assert(iterator->level >= level);
++  assert(iterator->level >= level);
+ 
+   while (iterator->level > level)
+     if (!sexp_iterator_exit_list(iterator))
+diff -urN nettle-3.4.1/sexp-format.c nettle-3.4.1.orig/sexp-format.c
+--- nettle-3.4.1/sexp-format.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sexp-format.c	2018-12-24 14:43:35.840912702 +0000
+@@ -123,7 +123,7 @@
+ 	break;
+ 	
+       case '\0':
+-//	assert(!nesting);
++	assert(!nesting);
+ 	    
+ 	return done;
+ 
+@@ -136,7 +136,7 @@
+ 	break;
+ 
+       case ')':
+-//	assert (nesting);
++	assert (nesting);
+ 	if (buffer && !NETTLE_BUFFER_PUTC(buffer, ')'))
+ 	  return 0;
+ 
+diff -urN nettle-3.4.1/sexp-transport.c nettle-3.4.1.orig/sexp-transport.c
+--- nettle-3.4.1/sexp-transport.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sexp-transport.c	2018-12-24 14:43:35.844913538 +0000
+@@ -126,7 +126,7 @@
+   else
+     {
+       /* Both parts non-empty */
+-//      assert(out < in);
++      assert(out < in);
+       memmove(input + out, input + in, length - in);
+       length -= (in - out);
+     }
+diff -urN nettle-3.4.1/sha1.c nettle-3.4.1.orig/sha1.c
+--- nettle-3.4.1/sha1.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sha1.c	2018-12-24 14:43:35.856916047 +0000
+@@ -84,7 +84,7 @@
+ {
+   uint64_t bit_count;
+ 
+-//  assert(length <= SHA1_DIGEST_SIZE);
++  assert(length <= SHA1_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 8, COMPRESS);
+ 
+diff -urN nettle-3.4.1/sha256.c nettle-3.4.1.orig/sha256.c
+--- nettle-3.4.1/sha256.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sha256.c	2018-12-24 14:43:35.848914374 +0000
+@@ -106,7 +106,7 @@
+ {
+   uint64_t bit_count;
+ 
+-//  assert(length <= SHA256_DIGEST_SIZE);
++  assert(length <= SHA256_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 8, COMPRESS);
+ 
+diff -urN nettle-3.4.1/sha3.c nettle-3.4.1.orig/sha3.c
+--- nettle-3.4.1/sha3.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sha3.c	2018-12-24 14:43:35.852915211 +0000
+@@ -46,7 +46,7 @@
+ static void
+ sha3_absorb (struct sha3_state *state, unsigned length, const uint8_t *data)
+ {
+-//  assert ( (length & 7) == 0);
++  assert ( (length & 7) == 0);
+ #if WORDS_BIGENDIAN
+   {    
+     uint64_t *p;
+@@ -93,7 +93,7 @@
+ _sha3_pad (struct sha3_state *state,
+ 	   unsigned block_size, uint8_t *block, unsigned pos)
+ {
+-//  assert (pos < block_size);
++  assert (pos < block_size);
+   block[pos++] = 6;
+ 
+   memset (block + pos, 0, block_size - pos);
+diff -urN nettle-3.4.1/sha512.c nettle-3.4.1.orig/sha512.c
+--- nettle-3.4.1/sha512.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/sha512.c	2018-12-24 14:43:35.848914374 +0000
+@@ -161,7 +161,7 @@
+   unsigned words;
+   unsigned leftover;
+ 
+-//  assert(length <= SHA512_DIGEST_SIZE);
++  assert(length <= SHA512_DIGEST_SIZE);
+ 
+   MD_PAD(ctx, 16, COMPRESS);
+ 
+@@ -199,7 +199,7 @@
+ 	      size_t length,
+ 	      uint8_t *digest)
+ {
+-//  assert(length <= SHA512_DIGEST_SIZE);
++  assert(length <= SHA512_DIGEST_SIZE);
+ 
+   sha512_write_digest(ctx, length, digest);
+   sha512_init(ctx);
+@@ -240,7 +240,7 @@
+ 	      size_t length,
+ 	      uint8_t *digest)
+ {
+-//  assert(length <= SHA384_DIGEST_SIZE);
++  assert(length <= SHA384_DIGEST_SIZE);
+ 
+   sha512_write_digest(ctx, length, digest);
+   sha384_init(ctx);
+@@ -273,7 +273,7 @@
+ 	      size_t length,
+ 	      uint8_t *digest)
+ {
+-//  assert(length <= SHA224_DIGEST_SIZE);
++  assert(length <= SHA224_DIGEST_SIZE);
+ 
+   sha512_write_digest(ctx, length, digest);
+   sha512_224_init(ctx);
+@@ -306,7 +306,7 @@
+ 	      size_t length,
+ 	      uint8_t *digest)
+ {
+-//  assert(length <= SHA256_DIGEST_SIZE);
++  assert(length <= SHA256_DIGEST_SIZE);
+ 
+   sha512_write_digest(ctx, length, digest);
+   sha512_256_init(ctx);
+diff -urN nettle-3.4.1/tools/input.c nettle-3.4.1.orig/tools/input.c
+--- nettle-3.4.1/tools/input.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/tools/input.c	2018-12-24 14:43:35.848914374 +0000
+@@ -114,7 +114,7 @@
+ sexp_push_char(struct sexp_input *input,
+ 	       struct nettle_buffer *string)
+ {
+-//  assert(input->ctype == SEXP_NORMAL_CHAR);
++  assert(input->ctype == SEXP_NORMAL_CHAR);
+     
+   if (!NETTLE_BUFFER_PUTC(string, input->c))
+     die("Virtual memory exhasuted.\n");
+@@ -125,7 +125,7 @@
+ 			const struct nettle_armor *coding,
+ 			uint8_t terminator)
+ {
+-//  assert(!input->coding);
++  assert(!input->coding);
+   
+   input->coding = coding;
+   input->coding->decode_init(&input->state);
+@@ -135,7 +135,7 @@
+ static void
+ sexp_input_end_coding(struct sexp_input *input)
+ {
+-//  assert(input->coding);
++  assert(input->coding);
+ 
+   if (!input->coding->decode_final(&input->state))
+     die("Invalid coded data.\n");
+@@ -190,8 +190,8 @@
+ sexp_get_token_string(struct sexp_input *input,
+ 		      struct nettle_buffer *string)
+ {
+-//  assert(!input->coding);
+-//  assert(input->ctype == SEXP_NORMAL_CHAR);
++  assert(!input->coding);
++  assert(input->ctype == SEXP_NORMAL_CHAR);
+   
+   if (!TOKEN_CHAR(input->c))
+     die("Invalid token.\n");
+@@ -203,7 +203,7 @@
+     }
+   while (input->ctype == SEXP_NORMAL_CHAR && TOKEN_CHAR(input->c));
+   
+-//  assert (string->size);
++  assert (string->size);
+ }
+ 
+ static void
+@@ -272,7 +272,7 @@
+ 
+   else
+     {
+-//      assert(length < 10);
++      assert(length < 10);
+       /* Get rest of digits */
+       for (;;)
+ 	{
+@@ -346,8 +346,8 @@
+ {
+   nettle_buffer_reset(string);
+ 
+-//  assert(input->ctype == SEXP_NORMAL_CHAR);
+-//  assert(input->c == ';');
++  assert(input->ctype == SEXP_NORMAL_CHAR);
++  assert(input->c == ';');
+ 
+   do
+     {
+diff -urN nettle-3.4.1/tools/output.c nettle-3.4.1.orig/tools/output.c
+--- nettle-3.4.1/tools/output.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/tools/output.c	2018-12-24 14:43:35.848914374 +0000
+@@ -121,7 +121,7 @@
+ 
+       done = output->coding->encode_update(&output->base64, encoded,
+ 					   1, &c);
+-//      assert(done <= sizeof(encoded));
++      assert(done <= sizeof(encoded));
+       
+       for (i = 0; i<done; i++)
+ 	{
+@@ -171,7 +171,7 @@
+ sexp_put_code_start(struct sexp_output *output,
+ 		    const struct nettle_armor *coding)
+ {
+-//  assert(!output->coding);
++  assert(!output->coding);
+   
+   output->coding_indent = output->pos;
+   
+@@ -186,11 +186,11 @@
+   char encoded[BASE64_ENCODE_FINAL_LENGTH];
+   unsigned done;
+ 
+-//  assert(output->coding);
++  assert(output->coding);
+ 
+   done = output->coding->encode_final(&output->base64, encoded);
+ 
+-//  assert(done <= sizeof(encoded));
++  assert(done <= sizeof(encoded));
+   
+   output->coding = NULL;
+ 
+@@ -245,7 +245,7 @@
+ 	      int escape = 0;
+ 	      uint8_t c = string->contents[i];
+ 
+-//	      assert(c < 0x7f);
++	      assert(c < 0x7f);
+ 	      
+ 	      if (c == '\\' || c == '"')
+ 		escape = 1;
+@@ -253,7 +253,7 @@
+ 		{
+ 		  escape = 1;
+ 		  c = escape_names[c];
+-//		  assert(c);
++		  assert(c);
+ 		}
+ 	      if (escape)
+ 		sexp_put_char(output, '\\');
+@@ -301,7 +301,7 @@
+   TMP_DECL(digest, uint8_t, NETTLE_MAX_HASH_DIGEST_SIZE);
+   TMP_ALLOC(digest, output->hash->digest_size);
+   
+-//  assert(output->hash);
++  assert(output->hash);
+ 
+   output->hash->digest(output->ctx, output->hash->digest_size, digest);
+ 
+diff -urN nettle-3.4.1/tools/parse.c nettle-3.4.1.orig/tools/parse.c
+--- nettle-3.4.1/tools/parse.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/tools/parse.c	2018-12-24 14:43:35.848914374 +0000
+@@ -118,8 +118,8 @@
+ 	  if (parser->level == parser->transport)
+ 	    {
+ 	      sexp_check_token(parser, SEXP_CODING_END, &token->string);
+-//	      assert(parser->transport);
+-//	      assert(parser->level == parser->transport);
++	      assert(parser->transport);
++	      assert(parser->level == parser->transport);
+ 
+ 	      parser->level--;
+ 	      parser->transport = 0;
+diff -urN nettle-3.4.1/twofish.c nettle-3.4.1.orig/twofish.c
+--- nettle-3.4.1/twofish.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/twofish.c	2018-12-24 14:43:35.856916047 +0000
+@@ -288,7 +288,7 @@
+ 
+   /* Extend key as necessary */
+ 
+-//  assert(keysize <= 32);
++  assert(keysize <= 32);
+ 
+   /* We do a little more copying than necessary, but that doesn't
+    * really matter. */
+@@ -366,7 +366,7 @@
+   const uint32_t * keys        = context->keys;
+   const uint32_t (*s_box)[256] = context->s_box;
+ 
+-//  assert( !(length % TWOFISH_BLOCK_SIZE) );
++  assert( !(length % TWOFISH_BLOCK_SIZE) );
+   for ( ; length; length -= TWOFISH_BLOCK_SIZE)
+     {  
+       uint32_t words[4];
+@@ -437,7 +437,7 @@
+   const uint32_t *keys  = context->keys;
+   const uint32_t (*s_box)[256] = context->s_box;
+ 
+-//  assert( !(length % TWOFISH_BLOCK_SIZE) );
++  assert( !(length % TWOFISH_BLOCK_SIZE) );
+   for ( ; length; length -= TWOFISH_BLOCK_SIZE)
+     {  
+       uint32_t words[4];
+diff -urN nettle-3.4.1/umac128.c nettle-3.4.1.orig/umac128.c
+--- nettle-3.4.1/umac128.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/umac128.c	2018-12-24 14:43:35.856916047 +0000
+@@ -58,8 +58,8 @@
+ umac128_set_nonce (struct umac128_ctx *ctx,
+ 		   size_t nonce_length, const uint8_t *nonce)
+ {
+-//  assert (nonce_length > 0);
+-//  assert (nonce_length <= AES_BLOCK_SIZE);
++  assert (nonce_length > 0);
++  assert (nonce_length <= AES_BLOCK_SIZE);
+ 
+   memcpy (ctx->nonce, nonce, nonce_length);
+   memset (ctx->nonce + nonce_length, 0, AES_BLOCK_SIZE - nonce_length);
+@@ -92,8 +92,8 @@
+   uint32_t tag[4];
+   unsigned i;
+ 
+-//  assert (length > 0);
+-//  assert (length <= 16);
++  assert (length > 0);
++  assert (length <= 16);
+ 
+   if (ctx->index > 0 || ctx->count == 0)
+     {
+@@ -109,7 +109,7 @@
+       y[3] += 8 * ctx->index;
+       _umac_l2 (ctx->l2_key, ctx->l2_state, 4, ctx->count++, y);
+     }
+-//  assert (ctx->count > 0);
++  assert (ctx->count > 0);
+ 
+   aes128_encrypt (&ctx->pdf_key, AES_BLOCK_SIZE,
+ 		  (uint8_t *) tag, ctx->nonce);
+diff -urN nettle-3.4.1/umac32.c nettle-3.4.1.orig/umac32.c
+--- nettle-3.4.1/umac32.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/umac32.c	2018-12-24 14:43:35.852915211 +0000
+@@ -59,8 +59,8 @@
+ umac32_set_nonce (struct umac32_ctx *ctx,
+ 		  size_t nonce_length, const uint8_t *nonce)
+ {
+-//  assert (nonce_length > 0);
+-//  assert (nonce_length <= AES_BLOCK_SIZE);
++  assert (nonce_length > 0);
++  assert (nonce_length <= AES_BLOCK_SIZE);
+ 
+   memcpy (ctx->nonce, nonce, nonce_length);
+   memset (ctx->nonce + nonce_length, 0, AES_BLOCK_SIZE - nonce_length);
+@@ -91,8 +91,8 @@
+ {
+   uint32_t pad;
+ 
+-//  assert (length > 0);
+-//  assert (length <= 4);
++  assert (length > 0);
++  assert (length <= 4);
+ 
+   if (ctx->index > 0 || ctx->count == 0)
+     {
+@@ -105,7 +105,7 @@
+ 	+ 8 * ctx->index;
+       _umac_l2 (ctx->l2_key, ctx->l2_state, 1, ctx->count++, &y);
+     }
+-//  assert (ctx->count > 0);
++  assert (ctx->count > 0);
+   if ( !(ctx->nonce_low & _UMAC_NONCE_CACHED))
+     {
+       aes128_encrypt (&ctx->pdf_key, AES_BLOCK_SIZE,
+diff -urN nettle-3.4.1/umac64.c nettle-3.4.1.orig/umac64.c
+--- nettle-3.4.1/umac64.c	2018-12-24 14:44:09.330598631 +0000
++++ nettle-3.4.1.orig/umac64.c	2018-12-24 14:43:35.852915211 +0000
+@@ -59,8 +59,8 @@
+ umac64_set_nonce (struct umac64_ctx *ctx,
+ 		  size_t nonce_length, const uint8_t *nonce)
+ {
+-//  assert (nonce_length > 0);
+-//  assert (nonce_length <= AES_BLOCK_SIZE);
++  assert (nonce_length > 0);
++  assert (nonce_length <= AES_BLOCK_SIZE);
+ 
+   memcpy (ctx->nonce, nonce, nonce_length);
+   memset (ctx->nonce + nonce_length, 0, AES_BLOCK_SIZE - nonce_length);
+@@ -93,8 +93,8 @@
+   uint32_t tag[2];
+   uint32_t *pad;
+ 
+-//  assert (length > 0);
+-//  assert (length <= 8);
++  assert (length > 0);
++  assert (length <= 8);
+ 
+   if (ctx->index > 0 || ctx->count == 0)
+     {
+@@ -108,7 +108,7 @@
+       y[1] += 8 * ctx->index;
+       _umac_l2 (ctx->l2_key, ctx->l2_state, 2, ctx->count++, y);
+     }
+-//  assert (ctx->count > 0);
++  assert (ctx->count > 0);
+   if ( !(ctx->nonce_low & _UMAC_NONCE_CACHED))
+     {
+       aes128_encrypt (&ctx->pdf_key, AES_BLOCK_SIZE,
+diff -urN nettle-3.4.1/umac96.c nettle-3.4.1.orig/umac96.c
+--- nettle-3.4.1/umac96.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac96.c	2018-12-24 14:43:35.840912702 +0000
+@@ -58,8 +58,8 @@
+ umac96_set_nonce (struct umac96_ctx *ctx,
+ 		  size_t nonce_length, const uint8_t *nonce)
+ {
+-//  assert (nonce_length > 0);
+-//  assert (nonce_length <= AES_BLOCK_SIZE);
++  assert (nonce_length > 0);
++  assert (nonce_length <= AES_BLOCK_SIZE);
+ 
+   memcpy (ctx->nonce, nonce, nonce_length);
+   memset (ctx->nonce + nonce_length, 0, AES_BLOCK_SIZE - nonce_length);
+@@ -91,8 +91,8 @@
+   uint32_t tag[4];
+   unsigned i;
+ 
+-//  assert (length > 0);
+-//  assert (length <= 12);
++  assert (length > 0);
++  assert (length <= 12);
+ 
+   if (ctx->index > 0 || ctx->count == 0)
+     {
+@@ -107,7 +107,7 @@
+       y[2] += 8 * ctx->index;
+       _umac_l2 (ctx->l2_key, ctx->l2_state, 3, ctx->count++, y);
+     }
+-//  assert (ctx->count > 0);
++  assert (ctx->count > 0);
+ 
+   aes128_encrypt (&ctx->pdf_key, AES_BLOCK_SIZE,
+ 		  (uint8_t *) tag, ctx->nonce);
+diff -urN nettle-3.4.1/umac-l2.c nettle-3.4.1.orig/umac-l2.c
+--- nettle-3.4.1/umac-l2.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac-l2.c	2018-12-24 14:43:35.840912702 +0000
+@@ -108,7 +108,7 @@
+   uint64_t *prev = state + 2*n;
+   unsigned i;
+ 
+-//  assert (count > 0);
++  assert (count > 0);
+   if (count == 1)
+     for (i = 0; i < n; i++)
+       {
+diff -urN nettle-3.4.1/umac-nh.c nettle-3.4.1.orig/umac-nh.c
+--- nettle-3.4.1/umac-nh.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac-nh.c	2018-12-24 14:43:35.848914374 +0000
+@@ -50,9 +50,9 @@
+ {
+   uint64_t y;
+ 
+-//  assert (length > 0);
+-//  assert (length <= 1024);
+-//  assert (length % 32 == 0);
++  assert (length > 0);
++  assert (length <= 1024);
++  assert (length % 32 == 0);
+   for (y = 0; length > 0; length -= 32, msg += 32, key += 8)
+     {
+       uint32_t a, b;
+diff -urN nettle-3.4.1/umac-nh-n.c nettle-3.4.1.orig/umac-nh-n.c
+--- nettle-3.4.1/umac-nh-n.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac-nh-n.c	2018-12-24 14:43:35.852915211 +0000
+@@ -51,9 +51,9 @@
+ _umac_nh_n (uint64_t *out, unsigned n, const uint32_t *key,
+ 	    unsigned length, const uint8_t *msg)
+ {
+-//  assert (length > 0);
+-//  assert (length <= 1024);
+-//  assert (length % 32 == 0);
++  assert (length > 0);
++  assert (length <= 1024);
++  assert (length % 32 == 0);
+ 
+   memset(out, 0, n*sizeof(*out));
+   
+diff -urN nettle-3.4.1/umac-poly128.c nettle-3.4.1.orig/umac-poly128.c
+--- nettle-3.4.1/umac-poly128.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac-poly128.c	2018-12-24 14:43:35.856916047 +0000
+@@ -127,7 +127,7 @@
+       mh -= (ml < UMAC_P128_OFFSET);
+       ml -= UMAC_P128_OFFSET;
+     }
+-//  assert (mh < UMAC_P128_HI || ml < UMAC_P128_LO);
++  assert (mh < UMAC_P128_HI || ml < UMAC_P128_LO);
+ 
+   poly128_mul (k, y);
+   yl = y[1] + ml;
+@@ -136,7 +136,7 @@
+   cy = (yh < cy);
+   yh += mh;
+   cy += (yh < mh);
+-//  assert (cy <= 1);
++  assert (cy <= 1);
+   if (cy)
+     {
+       yl += UMAC_P128_OFFSET;
+diff -urN nettle-3.4.1/umac-poly64.c nettle-3.4.1.orig/umac-poly64.c
+--- nettle-3.4.1/umac-poly64.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/umac-poly64.c	2018-12-24 14:43:35.852915211 +0000
+@@ -52,7 +52,7 @@
+   ph += mh + (pl < ml);
+ 
+   /* Reduce, using 2^64 = UMAC_P64_OFFSET (mod p) */
+-//  assert (ph < ((uint64_t) 1 << 57));
++  assert (ph < ((uint64_t) 1 << 57));
+   ph *= UMAC_P64_OFFSET;
+   pl += ph;
+   if (pl < ph)
+diff -urN nettle-3.4.1/yarrow256.c nettle-3.4.1.orig/yarrow256.c
+--- nettle-3.4.1/yarrow256.c	2018-12-24 14:44:09.334599943 +0000
++++ nettle-3.4.1.orig/yarrow256.c	2018-12-24 14:43:35.852915211 +0000
+@@ -112,7 +112,7 @@
+ 	       size_t length,
+ 	       const uint8_t *seed_file)
+ {
+-//  assert(length > 0);
++  assert(length > 0);
+ 
+   sha256_update(&ctx->pools[YARROW_FAST], length, seed_file);
+   yarrow256_fast_reseed(ctx);
+@@ -241,7 +241,7 @@
+   enum yarrow_pool_id current;
+   struct yarrow_source *source;
+   
+-//  assert(source_index < ctx->nsources);
++  assert(source_index < ctx->nsources);
+ 
+   if (!length)
+     /* Nothing happens */
+@@ -325,7 +325,7 @@
+ void
+ yarrow256_random(struct yarrow256_ctx *ctx, size_t length, uint8_t *dst)
+ {
+-//  assert(ctx->seeded);
++  assert(ctx->seeded);
+ 
+   while (length >= AES_BLOCK_SIZE)
+     {
+@@ -337,7 +337,7 @@
+     {
+       uint8_t buffer[AES_BLOCK_SIZE];
+       
+-//      assert(length < AES_BLOCK_SIZE);
++      assert(length < AES_BLOCK_SIZE);
+       yarrow_generate_block(ctx, buffer);
+       memcpy(dst, buffer, length);
+     }
